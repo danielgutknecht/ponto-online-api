@@ -16,25 +16,20 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 
-import org.hibernate.engine.profile.Fetch;
-
-import javassist.SerialVersionUID;
-
 @Entity
 @Table(name = "empresa")
 public class Empresa implements Serializable {
 
-	private static final long SerialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-	
 	private Long id;
-	
 	private String razaoSocial;
 	private String cnpj;
 	private Date dataCriacao;
 	private Date dataAtualizacao;
 	private List<Funcionario> funcionario;
 
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	public Long getId() {
@@ -54,6 +49,7 @@ public class Empresa implements Serializable {
 		this.razaoSocial = razaoSocial;
 	}
 	
+	
 	@Column(name = "cnpj", nullable = false)
 	public String getCnpj() {
 		return cnpj;
@@ -62,6 +58,7 @@ public class Empresa implements Serializable {
 	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
+	
 	
 	@Column(name = "data_criacao", nullable = false)
 	public Date getDataCriacao() {
@@ -97,10 +94,14 @@ public class Empresa implements Serializable {
 	
 	@PrePersist
 	public void  prePersist() {
-		final Date atual = new Date(id);
+		final Date atual = new Date();
 		dataCriacao = atual;
 		dataAtualizacao = atual;
 	}
 
-	
+	@Override
+	public String toString() {
+		return "Empresa [id=" + id + ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj + ", dataCriacao=" + dataCriacao
+				+ ", dataAtualizacao=" + dataAtualizacao + ", funcionario=" + funcionario + "]";
+	}
 }
