@@ -18,6 +18,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.gutk.pontoonline.api.enums.PerfilEnum;
 import com.gutk.pontoonline.api.enums.TipoEnum;
 
 @Entity
@@ -55,7 +56,7 @@ public class Lancamento implements Serializable {
 		this.data = data;
 	}
 
-	@Column(name = "descricao", nullable = false)
+	@Column(name = "descricao", nullable = true)
 	public String getDescriacao() {
 		return descriacao;
 	}
@@ -64,7 +65,7 @@ public class Lancamento implements Serializable {
 		this.descriacao = descriacao;
 	}
 
-	@Column(name = "localizacao", nullable = false)
+	@Column(name = "localizacao", nullable = true)
 	public String getLocalizacao() {
 		return localizacao;
 	}
@@ -128,4 +129,6 @@ public class Lancamento implements Serializable {
 				+ ", dataCriacao=" + dataCriacao + ", dataAtualizacao=" + dataAtualizacao + ", tipo=" + tipo
 				+ ", funcionario=" + funcionario + "]";
 	}
+
+
 }

@@ -17,6 +17,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
@@ -73,7 +74,7 @@ public class Funcionario implements Serializable {
 		return sobrenome;
 	}
 
-	@Column(name = "sobrenome", nullable = false)
+	@Column(name = "sobrenome", nullable = true)
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
@@ -89,7 +90,7 @@ public class Funcionario implements Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "senha", nullable = false)
+	@Column(name = "senha", nullable = true)
 	public String getSenha() {
 		return senha;
 	}
@@ -107,7 +108,7 @@ public class Funcionario implements Serializable {
 		this.cpf = cpf;
 	}
 
-	@Column(name = "valor_hora", nullable = false)
+	@Column(name = "valor_hora", nullable = true)
 	public Float getValorHora() {
 		return valorHora;
 	}
@@ -117,7 +118,7 @@ public class Funcionario implements Serializable {
 		this.valorHora = valorHora;
 	}
 
-	@Column(name = "qtd_hora_trabalho_dia", nullable = false)
+	@Column(name = "qtd_hora_trabalho_dia", nullable = true)
 	public Float getQtdHoraTrabalhoDia() {
 		return qtdHoraTrabalhoDia;
 	}
@@ -127,7 +128,7 @@ public class Funcionario implements Serializable {
 		this.qtdHoraTrabalhoDia = qtdHoraTrabalhoDia;
 	}
 
-	@Column(name = "qtd_hora_almoco", nullable = false)
+	@Column(name = "qtd_hora_almoco", nullable = true)
 	public Float getQtdHoraAlmoco() {
 		return qtdHoraAlmoco;
 	}
@@ -188,7 +189,8 @@ public class Funcionario implements Serializable {
 	public void preUpdate() {
 		dataAtualizacao = new Date();
 	}
-
+	
+	@PrePersist
 	public void prePersist() {
 		final Date atual = new Date();
 		dataCriacao = atual;
