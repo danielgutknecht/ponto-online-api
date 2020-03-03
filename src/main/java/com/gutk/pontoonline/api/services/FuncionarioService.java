@@ -1,21 +1,25 @@
 package com.gutk.pontoonline.api.services;
 
 import java.util.List;
+import java.util.Optional;
+
 import com.gutk.pontoonline.api.entities.Funcionario;
 import com.gutk.pontoonline.api.exceptions.RecordNotFoundException;
 
 public interface FuncionarioService {
 	
-	public List<Funcionario> getAllFuncionarios();
+	public List<Funcionario> listarTodos();
 	
-	public List<Funcionario> findByNameFuncionario (String name);
+	Funcionario buscarPorName (String name);
 	
-	public List<Funcionario> findByCpfFuncionario(String nome) throws RecordNotFoundException;
+	Funcionario buscarPorCpf(String cpf) throws RecordNotFoundException;
 	
-	public Funcionario createOrUpdateFuncionario(Funcionario funcionario);
-	
-	public Funcionario getByIdFuncionario(Long id) throws RecordNotFoundException;
+	Funcionario buscarPorEmail(String email);
 		
-	public void deleteFuncionario(Long id) throws RecordNotFoundException;
+	Optional<Funcionario>buscarPorId(Long id) throws RecordNotFoundException;
+	
+	Funcionario criarOuAtualizar(Funcionario funcionario);
+	
+	public void excluir(Long id) throws RecordNotFoundException;
 
 }

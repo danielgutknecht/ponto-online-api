@@ -4,14 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import javax.transaction.Transactional;
-
+import org.hibernate.query.criteria.internal.predicate.IsEmptyPredicate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gutk.pontoonline.api.entities.Funcionario;
-import com.gutk.pontoonline.api.repositories.FuncionarioRepository;
 import com.gutk.pontoonline.api.exceptions.RecordNotFoundException;
+import com.gutk.pontoonline.api.repositories.FuncionarioRepository;
 
 @Service
 public class FuncionarioServiceImpl implements FuncionarioService {
@@ -20,9 +19,7 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	private FuncionarioRepository funcionarioRepository;
 
 	@Override
-	@Transactional
-	public List<Funcionario> getAllFuncionarios() {
-
+	public List<Funcionario> listarTodos() {
 		// Obs: ver metodo de paginação futuramente
 		List<Funcionario> funcList = funcionarioRepository.findAll();
 
@@ -35,79 +32,39 @@ public class FuncionarioServiceImpl implements FuncionarioService {
 	}
 
 	@Override
-	@Transactional
-	public List<Funcionario> findByNameFuncionario(String nome) {
-
-		return (List<Funcionario>) funcionarioRepository.findByNome(nome);
+	public Funcionario buscarPorName(String name) {
+	
+		return funcionarioRepository.findByNome(name);
+		 
 	}
 
 	@Override
-	@Transactional
-	public Funcionario getByIdFuncionario(Long id) throws RecordNotFoundException {
-
-		Optional<Funcionario> funcList = funcionarioRepository.findById(id);
-
-		if (funcList.isPresent()) {
-			return funcList.get();
-		} else {
-			throw new RecordNotFoundException("Funcionário não encontrado com este id");
-		}
+	public Funcionario buscarPorCpf(String cpf) throws RecordNotFoundException {
+		
+		return funcionarioRepository.findByCpf(cpf);
 	}
 
 	@Override
-	public List<Funcionario> findByCpfFuncionario(String nome) {
-		List<Funcionario> funcList = (List<Funcionario>) funcionarioRepository.findByNome(nome);
-
-		if (!funcList.isEmpty()) {
-			return funcList;
-		} else {
-			// throw new RecordNotFoundException("Funcionário não encontrado com este id");
-			throw new RuntimeException("CPF não encontrado");
-
+	public Funcionario buscarPorEmail(String email) {
+		
+		return funcionarioRepository.findByEmail(email);
 		}
+
+	@Override
+	public Optional<Funcionario> buscarPorId(Long id) throws RecordNotFoundException {
+		// TODO Auto-generated method stub
+		return funcionarioRepository.findById(id);
 	}
 
 	@Override
-	public Funcionario createOrUpdateFuncionario(Funcionario funcionario) {
-		Optional<Funcionario> funcList = funcionarioRepository.findById(funcionario.getId());
-
-		if (funcList.isPresent()) {
-
-			Funcionario novoFuncionario = new Funcionario();
-			novoFuncionario.setNome(funcionario.getNome());
-			novoFuncionario.setSobrenome(funcionario.getSobrenome());
-			novoFuncionario.setEmail(funcionario.getEmail());
-			// novoFuncionario.setSenha(funcionario.getSenha());
-			// novoFuncionario.setValorHora(funcionario.getValorHora());
-			// novoFuncionario.setQtdHoraTrabalhoDia(funcionario.getQtdHoraTrabalhoDia());
-			// novoFuncionario.setQtdHoraAlmoco(funcionario.getQtdHoraAlmoco());
-
-			// analisar e adicionar os outros atributos
-
-			novoFuncionario = funcionarioRepository.save(novoFuncionario);
-
-			return novoFuncionario;
-
-		} else {
-
-			funcionario = funcionarioRepository.save(funcionario);
-
-			return funcionario;
-		}
-
+	public Funcionario criarOuAtualizar(Funcionario funcionario) {
+		
+		return funcionarioRepository.save(funcionario);
 	}
 
-	@Transactional
 	@Override
-	public void deleteFuncionario(Long id) throws RecordNotFoundException {
-
-		Optional<Funcionario> funcList = funcionarioRepository.findById(id);
-
-		if (funcList.isPresent()) {
-			funcionarioRepository.deleteById(id);
-		} else {
-			throw new RuntimeException("Funcionário não encontrado com este id");
-		}
+	public void excluir(Long id) throws RecordNotFoundException {
+		
 
 	}
 

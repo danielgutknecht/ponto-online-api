@@ -23,6 +23,7 @@ import com.gutk.pontoonline.api.services.FuncionarioService;
 @CrossOrigin(origins = "*")
 public class funcionarioController {
 
+	/*
 	@Autowired
 	private FuncionarioService funcionarioService;
 
@@ -38,5 +39,6 @@ public class funcionarioController {
 
 		return new ResponseEntity<Funcionario>(func, HttpStatus.OK);
 	}
+	*/
 
 }
