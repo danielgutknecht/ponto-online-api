@@ -1,25 +1,17 @@
 package com.gutk.pontoonline.api.entities;
 
-import java.beans.Transient;
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-
+import java.util.Optional;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.persistence.PrePersist;
-import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 
@@ -29,39 +21,21 @@ import com.gutk.pontoonline.api.enums.PerfilEnum;
 
 @Entity
 @Table(name = "funcionario")
-public class Funcionario implements Serializable {
+public class Funcionario extends AbstractEntity {
 
-	private static final long serialVersionUID = 1L;
-
-	private Long id;
+	private static final long serialVersionUID = 1L;	
+	
 	private String nome;
-	private String sobrenome;
 	private String email;
 	private String senha;
 	private String cpf;
 	private Float valorHora;
-	private Float qtdHoraTrabalhoDia;
-	private Float qtdHoraAlmoco;
-	private PerfilEnum perfi;
-	private Date dataCriacao;
-	private Date dataAtualizacao;
+	private Float qtdHorasTrabalhoDia;
+	private Float qtdHorasAlmoco;
+	private PerfilEnum perfil;
 	private Empresa empresa;
 	private List<Lancamento> lancamentos;
 
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	@Column(name = "nome", nullable = false)
-	@NotEmpty(message = "Nome não pode ser vazio")
-	@Length(min = 3, max = 200, message = "Nome deve conter entre 3 e 200 caracteres.")
 	public String getNome() {
 		return nome;
 	}
@@ -69,19 +43,9 @@ public class Funcionario implements Serializable {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-	public String getSobrenome() {
-		return sobrenome;
-	}
-
-	@Column(name = "sobrenome", nullable = true)
-	public void setSobrenome(String sobrenome) {
-		this.sobrenome = sobrenome;
-	}
-
-	@Column(name = "email", nullable = false)
-	@NotEmpty(message = "E-mail não pode ser vazio")
-	@Email(message = "E-mail inválido")
+	
+	
+	@Column(name = "email", nullable = true)
 	public String getEmail() {
 		return email;
 	}
@@ -90,16 +54,7 @@ public class Funcionario implements Serializable {
 		this.email = email;
 	}
 
-	@Column(name = "senha", nullable = true)
-	public String getSenha() {
-		return senha;
-	}
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-
-	@Column(name = "cpf", nullable = false)
+	@Column(name = "cpf", nullable = true)
 	public String getCpf() {
 		return cpf;
 	}
@@ -113,61 +68,48 @@ public class Funcionario implements Serializable {
 		return valorHora;
 	}
 
-	@Transient
 	public void setValorHora(Float valorHora) {
 		this.valorHora = valorHora;
 	}
 
-	@Column(name = "qtd_hora_trabalho_dia", nullable = true)
-	public Float getQtdHoraTrabalhoDia() {
-		return qtdHoraTrabalhoDia;
+	@Column(name = "qtd_horas_trabalho_dia", nullable = true)
+	public Float getQtdHorasTrabalhoDia() {
+		return qtdHorasTrabalhoDia;
+	}
+	
+	public void setQtdHorasTrabalhoDia(Float qtdHorasTrabalhoDia) {
+		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
 	}
 
-	@Transient
-	public void setQtdHoraTrabalhoDia(Float qtdHoraTrabalhoDia) {
-		this.qtdHoraTrabalhoDia = qtdHoraTrabalhoDia;
+	@Column(name = "qtd_horas_almoco", nullable = true)
+	public Float getQtdHorasAlmoco() {
+		return qtdHorasAlmoco;
 	}
 
-	@Column(name = "qtd_hora_almoco", nullable = true)
-	public Float getQtdHoraAlmoco() {
-		return qtdHoraAlmoco;
-	}
-
-	@Transient
-	public void setQtdHoraAlmoco(Float qtdHoraAlmoco) {
-		this.qtdHoraAlmoco = qtdHoraAlmoco;
+	public void setQtdHorasAlmoco(Float qtdHorasAlmoco) {
+		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 
 	@Enumerated(EnumType.STRING)
-	@Column(name = "perfil", nullable = false)
-	public PerfilEnum getPerfi() {
-		return perfi;
+	@Column(name = "perfil", nullable = true)
+	public PerfilEnum getPerfil() {
+		return perfil;
 	}
 
-	public void setPerfi(PerfilEnum perfi) {
-		this.perfi = perfi;
+	public void setPerfil(PerfilEnum perfil) {
+		this.perfil = perfil;
 	}
 
-	@Column(name = "data_criacao", nullable = false)
-	public Date getDataCriacao() {
-		return dataCriacao;
+	@Column(name = "senha", nullable = true)
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setDataCriacao(Date dataCriacao) {
-		this.dataCriacao = dataCriacao;
-	}
-
-	@Column(name = "data_atualizacao", nullable = false)
-	public Date getDataAtualizacao() {
-		return dataAtualizacao;
-	}
-
-	public void setDataAtualizacao(Date dataAtualizacao) {
-		this.dataAtualizacao = dataAtualizacao;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "empresa_id")
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -185,25 +127,11 @@ public class Funcionario implements Serializable {
 		this.lancamentos = lancamentos;
 	}
 
-	@PreUpdate
-	public void preUpdate() {
-		dataAtualizacao = new Date();
-	}
-	
-	@PrePersist
-	public void prePersist() {
-		final Date atual = new Date();
-		dataCriacao = atual;
-		dataAtualizacao = atual;
-	}
-
 	@Override
 	public String toString() {
-		return "Funcionario [id=" + id + ", nome=" + nome + ", sobrenome=" + sobrenome + ", email=" + email + ", senha="
-				+ senha + ", cpf=" + cpf + ", valorHora=" + valorHora + ", qtdHoraTrabalhoDia=" + qtdHoraTrabalhoDia
-				+ ", qtdHoraAlmoco=" + qtdHoraAlmoco + ", perfi=" + perfi + ", dataCriacao=" + dataCriacao
-				+ ", dataAtualizacao=" + dataAtualizacao + ", empresa=" + empresa + ", lancamentos=" + lancamentos
-				+ "]";
+		return "Funcionario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
+				+ ", valorHora=" + valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco="
+				+ qtdHorasAlmoco + ", perfil=" + perfil + ", empresa=" + empresa + ", lancamentos=" + lancamentos + "]";
 	}
 
 }

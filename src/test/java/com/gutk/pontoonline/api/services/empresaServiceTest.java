@@ -1,10 +1,7 @@
 package com.gutk.pontoonline.api.services;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.List;
-
+import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -13,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
-
 import com.gutk.pontoonline.api.entities.Empresa;
 import com.gutk.pontoonline.api.repositories.EmpresaRepository;
 
@@ -31,22 +27,46 @@ public class empresaServiceTest {
 
 	@BeforeEach
 	public void setUp() {
+		
+		Empresa emp = new 	Empresa();
+		
 		BDDMockito.given(empRepository.findByCnpj(Mockito.anyString())).willReturn(new Empresa());
 		BDDMockito.given(empRepository.save(Mockito.any(Empresa.class))).willReturn(new Empresa());
+		BDDMockito.when(empRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(emp));
+		
+		
 	}
 
+	/*
 	@Test
 	public void testBuscaEmpresaPorCnpj() {
-		Empresa emp = empService.buscarPorCnpj(CNPJ);
+		Optional<Empresa> emp = empService.buscarPorCnpj(CNPJ);
 
-		assertNotNull(emp);
+		assertTrue(emp.isPresent());
+	}
+	*/
+	
+	@Test
+	public void testBuscarEmpresaPorCnpj() {
+		Empresa empresa = empService.buscarEmpresaPorCnpj(CNPJ);
+
+		assertNotNull(empresa);
 	}
 	
 	@Test
 	public void testSalvarEmpresa() {
-		Empresa emp = empService.salvar(new Empresa());
+		Empresa emp = empService.criarEmpresa(new Empresa());
 		
 		assertNotNull(emp);
 	}
+	
+	@Test
+	public void testBuscarEmpresaPorId(){
+		Empresa func = empService.buscarEmpresaPorId(1L);
+
+		assertNotNull(func);
+	}
+	
+	
 
 }

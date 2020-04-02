@@ -17,8 +17,6 @@ import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.gutk.pontoonline.api.enums.PerfilEnum;
 import com.gutk.pontoonline.api.enums.TipoEnum;
 
 @Entity

@@ -2,7 +2,6 @@ package com.gutk.pontoonline.api.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,7 +29,7 @@ public class FuncionarioRepositoryTest {
 	public void setUp() {
 
 		Empresa empresa = empRepository.save(obterDadosEmpresa());
-		funcRepository.save(obterDadosFuncionario(empresa));
+		Funcionario funcionario = funcRepository.save(obterDadosFuncionario(empresa));
 
 	}
 
@@ -49,6 +48,7 @@ public class FuncionarioRepositoryTest {
 	@Test
 	public void testBuscaFuncionarioPorCpf() {
 		Funcionario func = funcRepository.findByCpf(CPF);
+		assertNotNull(func);
 	}
 	
 	@Test
@@ -72,7 +72,7 @@ public class FuncionarioRepositoryTest {
 	private Funcionario obterDadosFuncionario(Empresa empresa) {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Fulano de Tal");
-		funcionario.setPerfi(PerfilEnum.ROLE_USUARIO);
+		funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
 		funcionario.setCpf(CPF);
 		funcionario.setEmail(EMAIL);
 		funcionario.setSenha("123");

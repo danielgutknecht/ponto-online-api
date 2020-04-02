@@ -1,14 +1,10 @@
 package com.gutk.pontoonline.api.services;
 
-import java.util.List;
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import com.gutk.pontoonline.api.entities.Funcionario;
 import com.gutk.pontoonline.api.entities.Lancamento;
 import com.gutk.pontoonline.api.repositories.LancamentoRepository;
 

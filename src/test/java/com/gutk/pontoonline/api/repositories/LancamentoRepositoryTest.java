@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.ActiveProfiles;
 import com.gutk.pontoonline.api.entities.Empresa;
@@ -74,7 +73,7 @@ public class LancamentoRepositoryTest {
 	private Funcionario obterDadosFuncionario(Empresa empresa) {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Fulano de Tal");
-		funcionario.setPerfi(PerfilEnum.ROLE_USUARIO);
+		funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
 		funcionario.setCpf("01375634298");
 		funcionario.setEmail("daniel@email.com");
 		funcionario.setSenha("123");
