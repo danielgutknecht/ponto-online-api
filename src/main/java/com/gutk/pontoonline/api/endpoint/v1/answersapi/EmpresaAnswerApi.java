@@ -1,11 +1,12 @@
 package com.gutk.pontoonline.api.endpoint.v1.answersapi;
 
+import com.gutk.pontoonline.api.endpoint.response.errors.ApiError;
+
 //import com.gutk.pontoonline.api.endpoint.response.errors.ApiError;
 
 
 
 import com.gutk.pontoonline.api.endpoint.v1.dto.EmpresaDTO;
-import com.gutk.pontoonline.api.endpoint.v1.errors.ApiError;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -16,7 +17,7 @@ import io.swagger.annotations.ApiResponses;
 @Api
 public interface EmpresaAnswerApi
 {
-	@ApiOperation("Busca uma empra por ID")
+	@ApiOperation("Busca uma empresa por ID")
 	@ApiResponses({
 		@ApiResponse(code = 400, message = "Identificador de empresa inválido", response = ApiError.class),
 		@ApiResponse(code = 404, message = "Empresa não encontrada", response = ApiError.class)

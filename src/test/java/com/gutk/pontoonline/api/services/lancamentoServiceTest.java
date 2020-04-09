@@ -1,11 +1,8 @@
 package com.gutk.pontoonline.api.services;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.ArrayList;
 import java.util.Optional;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
@@ -18,7 +15,6 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
-
 import com.gutk.pontoonline.api.entities.Lancamento;
 import com.gutk.pontoonline.api.repositories.LancamentoRepository;
 
@@ -47,21 +43,21 @@ public class lancamentoServiceTest {
 	@Test
 	public void testBuscarFuncionarioPorId() {
 		Pageable firstPageWithTwoElements = PageRequest.of(0, 2);
-		Page<Lancamento> lanc = lancService.buscarPorFuncionarioId(1L, firstPageWithTwoElements);
+		Page<Lancamento> lanc = lancService.buscarLancamentoPorFuncionarioId(1L, firstPageWithTwoElements);
 		
 		assertNotNull(lanc);
 	}
 	
 	@Test
 	public void testBuscarPorId() {
-		Optional<Lancamento> lanc = lancService.buscarPorId(1L);
+		Lancamento lanc = lancService.buscarLancamentoPorId(1L);
 		
-		assertTrue(lanc.isPresent());
+		assertNotNull(lanc);
 	}
 	
 	@Test
-	public void testCriarOuAtualizar() {
-		Lancamento lanc = lancService.criarOuAtualizar(new Lancamento());
+	public void testCriarLancamento() {
+		Lancamento lanc = lancService.salvarLancamento(new Lancamento());
 		
 		assertNotNull(lanc);
 		

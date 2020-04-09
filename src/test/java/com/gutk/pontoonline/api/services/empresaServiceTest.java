@@ -55,18 +55,17 @@ public class empresaServiceTest {
 	
 	@Test
 	public void testSalvarEmpresa() {
-		Empresa emp = empService.criarEmpresa(new Empresa());
+		Empresa emp = empService.salvarEmpresa(new Empresa());
 		
 		assertNotNull(emp);
 	}
-	
+	/*
 	@Test
 	public void testBuscarEmpresaPorId(){
 		Empresa func = empService.buscarEmpresaPorId(1L);
 
 		assertNotNull(func);
 	}
-	
-	
+	*/	
 
 }

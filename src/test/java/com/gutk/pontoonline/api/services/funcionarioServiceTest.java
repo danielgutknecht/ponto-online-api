@@ -59,16 +59,9 @@ public class funcionarioServiceTest {
 
 	@Test
 	public void testSalvarFuncionario() {
-		Funcionario funcionario = funcService.criarFuncionario(new Funcionario());
+		Funcionario funcionario = funcService.salvarFuncionario(new Funcionario());
 
 		assertNotNull(funcionario);
-	}
+	}	
 	
-	/*
-	@Test
-	public void testAtualizarFuncionario() {
-		Funcionario func = funcService.(1L, new Funcionario());
-		
-		assertNotNull(func);
-	}*/
 }

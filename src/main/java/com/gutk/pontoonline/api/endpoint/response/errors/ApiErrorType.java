@@ -1,7 +1,5 @@
 package com.gutk.pontoonline.api.endpoint.response.errors;
 
-import lombok.Getter;
-
 public enum ApiErrorType {
 	
 	RESOURCE_NOT_FOUND("/recurso-nao-encontrado", "Recurso não encontrado"),

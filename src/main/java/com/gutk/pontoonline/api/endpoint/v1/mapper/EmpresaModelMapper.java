@@ -12,13 +12,13 @@ import com.gutk.pontoonline.api.endpoint.v1.dto.input.EmpresaDTOInput;
 import com.gutk.pontoonline.api.entities.Empresa;
 
 @Component
-public class EmpresaMapper extends RepresentationModelAssemblerSupport<Empresa, EmpresaDTO>
+public class EmpresaModelMapper extends RepresentationModelAssemblerSupport<Empresa, EmpresaDTO>
 {
 	@Autowired
 	private ModelMapper modelMapper;
 
 	
-	public EmpresaMapper() {
+	public EmpresaModelMapper() {
 		super(EmpresaController.class, EmpresaDTO.class);
 	}
 

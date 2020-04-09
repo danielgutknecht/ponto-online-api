@@ -1,21 +1,23 @@
 package com.gutk.pontoonline.api.services;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import com.gutk.pontoonline.api.entities.Funcionario;
 
 public interface FuncionarioService {
 
-	//public List<Funcionario> listarTodosFuncionarios();
-
+	Page<Funcionario> listarTodosFuncionarios(Pageable pageable);	
+	
 	Funcionario buscarFuncionarioPorCpf(String cpf);
 
 	Funcionario buscarFuncionarioPorEmail(String email);
 
 	Funcionario buscarFuncionarioPorId(Long id);
 
-	Funcionario criarFuncionario(Funcionario novoFuncionario);
+	Funcionario salvarFuncionario(Funcionario novoFuncionario);
+	
+	Funcionario atualizarFuncionario(Funcionario atualizaFuncionario);
 
-	//Funcionario atualizarFuncionario(Long id, Funcionario atualizarDetalhesfuncionario);
-
-	//public void excluir(Long id);
+	public void deletarPorId(Long id);
 
 }

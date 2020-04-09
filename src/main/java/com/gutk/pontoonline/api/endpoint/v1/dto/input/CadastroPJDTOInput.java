@@ -1,17 +1,10 @@
 package com.gutk.pontoonline.api.endpoint.v1.dto.input;
 
 import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
-
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.br.CNPJ;
 import org.hibernate.validator.constraints.br.CPF;
-import org.springframework.hateoas.RepresentationModel;
-
-import com.gutk.pontoonline.api.endpoint.v1.dto.EmpresaDTO;
-import com.gutk.pontoonline.api.entities.Empresa;
-import com.gutk.pontoonline.api.entities.Funcionario;
 
 public class CadastroPJDTOInput
 {

@@ -12,12 +12,12 @@ import com.gutk.pontoonline.api.entities.Funcionario;
 
 
 @Component
-public class CadastroPjDtopMapper extends RepresentationModelAssemblerSupport<Funcionario, CadastroPJDTO>
+public class CadastroPjDtopModelMapper extends RepresentationModelAssemblerSupport<Funcionario, CadastroPJDTO>
 {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	public CadastroPjDtopMapper()
+	public CadastroPjDtopModelMapper()
 	{
 		super(CadastroPJController.class, CadastroPJDTO.class);
 	}

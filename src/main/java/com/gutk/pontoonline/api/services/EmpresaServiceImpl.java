@@ -3,6 +3,7 @@ package com.gutk.pontoonline.api.services;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.EmpresaNotFoundException;
 import com.gutk.pontoonline.api.entities.Empresa;
@@ -23,13 +24,14 @@ public class EmpresaServiceImpl implements EmpresaService
 
 	@Override
 	public Empresa buscarEmpresaPorCnpj(String cnpj)
-	{ 
+	{
 		// verifica se o CNPJ existe no banco de dados
 		Boolean emp = empresaRepository.existsByCnpj(cnpj);
 		if (emp == false)
 		{
 			throw new EmpresaNotFoundException("CNPJ não foi encontrado");
 		}
+
 		return empresaRepository.findByCnpj(cnpj);
 	}
 
@@ -39,21 +41,29 @@ public class EmpresaServiceImpl implements EmpresaService
 		Optional<Empresa> emp = empresaRepository.findById(id);
 
 		return emp.orElseThrow(() -> new EmpresaNotFoundException(id));
-
 	}
 
 	@Override
-	public Empresa criarEmpresa(Empresa novaEmpresa)
+	public Empresa salvarEmpresa(Empresa novaEmpresa)
 	{
 		// verifica se o CNPJ existe no banco de dados
-		String existsCnpj = novaEmpresa.getCnpj();
-		Boolean emp = empresaRepository.existsByCnpj(existsCnpj);
-		if (emp == true)
+		Boolean existsCNPJ = empresaRepository.existsByCnpj(novaEmpresa.getCnpj());
+		if (existsCNPJ == true)
 		{
-			throw new EmpresaNotFoundException("CNPJ já cadastrada.");
+			throw new EmpresaNotFoundException("Existe uma empresa cadastrada com esse CNPJ");
 		}
-		// se não existe salva no banco de dados
 		return empresaRepository.save(novaEmpresa);
 	}
 
+	@Override
+	public void deletarEmpresaById(Long id)
+	{
+		try {
+		buscarEmpresaPorId(id);
+		empresaRepository.deleteById(id);
+		} catch(EmptyResultDataAccessException ex) {
+			throw new EmpresaNotFoundException(id);
+		} 
+	}		
+	
 }

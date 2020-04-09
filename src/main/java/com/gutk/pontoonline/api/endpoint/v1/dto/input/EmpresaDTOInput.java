@@ -1,7 +1,6 @@
 package com.gutk.pontoonline.api.endpoint.v1.dto.input;
 
 import javax.validation.constraints.NotBlank;
-
 import org.hibernate.validator.constraints.br.CNPJ;
 
 public class EmpresaDTOInput
@@ -20,6 +19,7 @@ public class EmpresaDTOInput
 	{
 		this.cnpj = cnpj;
 	}
+	@NotBlank(message = "Razão Social não pode ser vazio." )
 	public String getRazaoSocial()
 	{
 		return razaoSocial;

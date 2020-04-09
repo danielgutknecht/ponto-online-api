@@ -3,9 +3,6 @@ package com.gutk.pontoonline.api.endpoint.response.errors;
 import java.time.OffsetDateTime;
 import java.util.List;
 
-//@ApiModel("ApiError")
-//@JsonInclude(Include.NON_NULL)
-//@Builder
 public class ApiError {
 	
 	//@ApiModelProperty(example = "400", position = 1)

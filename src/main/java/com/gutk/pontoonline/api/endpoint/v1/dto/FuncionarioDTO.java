@@ -1,17 +1,11 @@
-package com.gutk.pontoonline.api.endpoint.v1.dto.input;
+package com.gutk.pontoonline.api.endpoint.v1.dto;
 
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import org.springframework.hateoas.RepresentationModel;
 
-import org.hibernate.validator.constraints.Length;
-import org.hibernate.validator.constraints.br.CPF;
-
-public class FuncionarioDTOInput
+public class FuncionarioDTO extends RepresentationModel<FuncionarioDTO>
 {
-	// não necessita cadastrar o id, pois é gerado pela sequencia no banco.
-	// private Long id;
+
+	private Long id;
 	private String nome;
 	private String email;
 	private String senha;
@@ -19,7 +13,18 @@ public class FuncionarioDTOInput
 	private Float valorHora;
 	private Float qtdHorasTrabalhoDia;
 	private Float qtdHorasAlmoco;
-	private Long empresaId;
+	private String razaoSocial;
+	private String cnpj;
+
+	public Long getId()
+	{
+		return id;
+	}
+
+	public void setId(Long id)
+	{
+		this.id = id;
+	}
 
 	public String getNome()
 	{
@@ -91,14 +96,24 @@ public class FuncionarioDTOInput
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 
-	public Long getEmpresaId()
+	public String getRazaoSocial()
 	{
-		return empresaId;
+		return razaoSocial;
 	}
 
-	public void setEmpresaId(Long empresaId)
+	public void setRazaoSocial(String razaoSocial)
 	{
-		this.empresaId = empresaId;
+		this.razaoSocial = razaoSocial;
 	}
 
+	public String getCnpj()
+	{
+		return cnpj;
+	}
+
+	public void setCnpj(String cnpj)
+	{
+		this.cnpj = cnpj;
+	}	
+		
 }

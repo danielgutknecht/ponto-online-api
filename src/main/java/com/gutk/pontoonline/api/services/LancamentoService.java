@@ -1,18 +1,22 @@
 package com.gutk.pontoonline.api.services;
 
-import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import com.gutk.pontoonline.api.entities.Lancamento;
 
-public interface LancamentoService {
+public interface LancamentoService
+{
 
-	Page<Lancamento> buscarPorFuncionarioId(Long funcionarioId, Pageable page);
+	Page<Lancamento> buscarLancamentoPorFuncionarioId(Long funcionarioId, Pageable page);
 
-	Optional<Lancamento> buscarPorId(Long id);
+	Lancamento buscarLancamentoPorId(Long id);
 
-	Lancamento criarOuAtualizar(Lancamento lancamento);
+	Page<Lancamento> listarTodosLancamentos(Pageable pageable);
 
-	void remover(Long id);
+	Lancamento salvarLancamento(Lancamento novoLancamento);
+	
+	Lancamento atualizarLancamento(Lancamento atualizaLancamento);
+	
+	void deletarLancamentoPorId(Long id);
 
 }

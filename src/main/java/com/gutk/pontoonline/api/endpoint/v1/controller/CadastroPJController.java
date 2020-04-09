@@ -22,7 +22,7 @@ import com.gutk.pontoonline.api.services.EmpresaService;
 import com.gutk.pontoonline.api.services.FuncionarioService;
 
 @RestController 
-@RequestMapping("/api/v2/empresa-pj")
+@RequestMapping("/api/v1/empresas")
 @CrossOrigin(origins = "*")
 public class CadastroPJController 
 {
@@ -43,6 +43,8 @@ public class CadastroPJController
 		
 	}
 	
+	/*
+	
 	@PostMapping
 	@ResponseStatus(value = HttpStatus.CREATED)
 	public CadastroPJDTO save(@RequestBody @Valid CadastroPJDTOInput cadastroPjInput) {
@@ -50,12 +52,11 @@ public class CadastroPJController
 			Funcionario funcionario = cadastroPjMapperManual.toDomainObjectFuncionario(cadastroPjInput);
 			Empresa empresa = cadastroPjMapperManual.toDomainObjectEmpresa(cadastroPjInput);
 						
-			empresaService.criarEmpresa(empresa);
+			empresaService.salvarEmpresa(empresa);
 			
 			funcionario.setEmpresa(empresa);
 						
-			CadastroPJDTO cadastroPJDTO = cadastroPjMapperManual.toModel(funcionarioService.criarFuncionario(funcionario));
-			
+			CadastroPJDTO cadastroPJDTO = cadastroPjMapperManual.toModel(funcionarioService.salvarFuncionario(funcionario));			
 
 			return cadastroPJDTO;
 		} catch (EmpresaNotFoundException ex) {
@@ -63,5 +64,6 @@ public class CadastroPJController
 		}
 	}
 	
+	*/
 
 }
