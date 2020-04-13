@@ -28,7 +28,5 @@ public class EmpresaDTOInput
 	{
 		this.razaoSocial = razaoSocial;
 	}
-	
-	
 
 }

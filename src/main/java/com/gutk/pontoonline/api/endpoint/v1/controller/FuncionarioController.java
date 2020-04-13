@@ -21,15 +21,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.BusinessException;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.FuncionarioNotFoundException;
-import com.gutk.pontoonline.api.endpoint.response.exceptions.LancamentoNotFoundExceptions;
 import com.gutk.pontoonline.api.endpoint.v1.dto.FuncionarioDTO;
-import com.gutk.pontoonline.api.endpoint.v1.dto.LancamentoDTO;
 import com.gutk.pontoonline.api.endpoint.v1.dto.input.FuncionarioDTOInput;
 import com.gutk.pontoonline.api.endpoint.v1.mapper.FuncionarioMapperManual;
-import com.gutk.pontoonline.api.entities.Empresa;
 import com.gutk.pontoonline.api.entities.Funcionario;
-import com.gutk.pontoonline.api.entities.Lancamento;
-import com.gutk.pontoonline.api.services.EmpresaService;
 import com.gutk.pontoonline.api.services.FuncionarioService;
 
 @RestController

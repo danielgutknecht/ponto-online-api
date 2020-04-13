@@ -21,6 +21,7 @@ public class FuncionarioDTOInput
 	private Float qtdHorasAlmoco;
 	private Long empresaId;
 
+	@NotBlank(message = "Nome não pode ser vazio.")
 	public String getNome()
 	{
 		return nome;
@@ -31,6 +32,9 @@ public class FuncionarioDTOInput
 		this.nome = nome;
 	}
 
+	@NotBlank(message = "E-mail não pode ser vazio.")
+	@Length(min = 3, max = 200, message = "E-mail deve ter entre 3 e 200 caracters.")
+	@Email(message = "E-mail inválido")
 	public String getEmail()
 	{
 		return email;
@@ -41,6 +45,7 @@ public class FuncionarioDTOInput
 		this.email = email;
 	}
 
+	@NotBlank(message = "Senha não pode ser vazio.")
 	public String getSenha()
 	{
 		return senha;
@@ -51,6 +56,8 @@ public class FuncionarioDTOInput
 		this.senha = senha;
 	}
 
+	@NotBlank(message = "CPF não pode ser vazio.")
+	@CPF(message = "CPF inválido.")
 	public String getCpf()
 	{
 		return cpf;
@@ -61,6 +68,7 @@ public class FuncionarioDTOInput
 		this.cpf = cpf;
 	}
 
+	@NotNull
 	public Float getValorHora()
 	{
 		return valorHora;
@@ -71,6 +79,7 @@ public class FuncionarioDTOInput
 		this.valorHora = valorHora;
 	}
 
+	@NotNull
 	public Float getQtdHorasTrabalhoDia()
 	{
 		return qtdHorasTrabalhoDia;
@@ -81,6 +90,7 @@ public class FuncionarioDTOInput
 		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
 	}
 
+	@NotNull
 	public Float getQtdHorasAlmoco()
 	{
 		return qtdHorasAlmoco;
@@ -90,7 +100,8 @@ public class FuncionarioDTOInput
 	{
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
-
+	
+	@NotNull
 	public Long getEmpresaId()
 	{
 		return empresaId;

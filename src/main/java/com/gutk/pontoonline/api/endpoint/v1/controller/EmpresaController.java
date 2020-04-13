@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.BusinessException;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.EmpresaNotFoundException;
-import com.gutk.pontoonline.api.endpoint.v1.answersapi.EmpresaAnswerApi;
 import com.gutk.pontoonline.api.endpoint.v1.dto.EmpresaDTO;
 import com.gutk.pontoonline.api.endpoint.v1.dto.input.EmpresaDTOInput;
 import com.gutk.pontoonline.api.endpoint.v1.mapper.EmpresaMapperManual;

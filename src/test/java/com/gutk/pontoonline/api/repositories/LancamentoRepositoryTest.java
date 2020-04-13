@@ -1,7 +1,6 @@
 package com.gutk.pontoonline.api.repositories;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import java.util.Date;
 import java.util.List;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

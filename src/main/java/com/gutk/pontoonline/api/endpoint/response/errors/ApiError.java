@@ -27,9 +27,6 @@ public class ApiError {
 	private List<Object> objects;
 
 
-	private ApiError() {
-	}
-
 	public ApiError(Integer status, OffsetDateTime timestamp, String type, String title, String detail, String userMessage, List<Object> objects) {
 		this.status = status;
 		this.timestamp = timestamp;

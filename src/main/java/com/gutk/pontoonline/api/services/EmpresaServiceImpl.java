@@ -31,7 +31,6 @@ public class EmpresaServiceImpl implements EmpresaService
 		{
 			throw new EmpresaNotFoundException("CNPJ não foi encontrado");
 		}
-
 		return empresaRepository.findByCnpj(cnpj);
 	}
 
@@ -58,12 +57,14 @@ public class EmpresaServiceImpl implements EmpresaService
 	@Override
 	public void deletarEmpresaById(Long id)
 	{
-		try {
-		buscarEmpresaPorId(id);
-		empresaRepository.deleteById(id);
-		} catch(EmptyResultDataAccessException ex) {
+		try
+		{
+			buscarEmpresaPorId(id);
+			empresaRepository.deleteById(id);
+		} catch (EmptyResultDataAccessException ex)
+		{
 			throw new EmpresaNotFoundException(id);
-		} 
-	}		
-	
+		}
+	}
+
 }
