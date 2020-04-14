@@ -27,6 +27,7 @@ public class FuncionarioRepositoryTest {
 
 	@BeforeEach
 	public void setUp() {
+		
 
 		Empresa empresa = empRepository.save(obterDadosEmpresa());
 		Funcionario funcionario = funcRepository.save(obterDadosFuncionario(empresa));
