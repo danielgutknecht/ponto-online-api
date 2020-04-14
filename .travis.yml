@@ -1,5 +1,9 @@
-    language: java
-    jdk:
-      - openjdk8
-    before_install:
-      - chmod +x mvnw
+language: java
+jdk:
+  - openjdk8
+services:
+  - postgresql
+before_install:
+  - chmod +x mvnw
+  - psql -c "CREATE DATABASE dbponto;" -U postgres
+  - psql -c "CREATE USER foo WITH PASSWORD 'portgres';" -U postgres
