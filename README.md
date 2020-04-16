@@ -13,118 +13,32 @@
 </ul>
 
 <h2 style="color: #2e6c80;"><span style="color: #000000;">Endpoints</span></h2>
-<p><span style="color: #000000;">&nbsp;</span></p>
-<table style="height: 248px; width: 615.117px;">
+<table style="height: 145px; width: 609px;">
 <tbody>
-<tr>
-<td style="width: 275px;">Empresa</td>
-<td style="width: 63px;">&nbsp;</td>
-<td style="width: 253.117px;">&nbsp;</td>
+<tr style="height: 2px;">
+<td style="width: 273.167px; height: 2px;">Empresa</td>
+<td style="width: 63.3667px; height: 2px;">&nbsp;</td>
+<td style="width: 250.467px; height: 2px;">&nbsp;</td>
 </tr>
-<tr>
-<td style="width: 275px;">&nbsp;</td>
-<td style="width: 63px;">&nbsp;</td>
-<td style="width: 253.117px;">&nbsp;</td>
+<tr style="height: 2px;">
+<td style="width: 273.167px; height: 2px;">/api/v1/empresas</td>
+<td style="width: 63.3667px; text-align: center; height: 2px;">POST</td>
+<td style="width: 250.467px; text-align: left; height: 2px;">Cadastrar</td>
 </tr>
-<tr>
-<td style="width: 275px;">/api/v1/empresas</td>
-<td style="width: 63px; text-align: center;">POST</td>
-<td style="width: 253.117px; text-align: left;">Cadastrar</td>
+<tr style="height: 12px;">
+<td style="width: 273.167px; height: 12px;">api/v1/empresas/cnpj/{cnpj}</td>
+<td style="width: 63.3667px; text-align: center; height: 12px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 12px;">Buscar por CNPJ</td>
 </tr>
-<tr>
-<td style="width: 275px;">api/v1/empresas/cnpj/{cnpj}</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Buscar por CNPJ</td>
+<tr style="height: 4px;">
+<td style="width: 273.167px; height: 4px;">/api/v1/empresas</td>
+<td style="width: 63.3667px; text-align: center; height: 4px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 4px;">Listar todas empresa</td>
 </tr>
-<tr>
-<td style="width: 275px;">/api/v1/empresas</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Listar todas empresa</td>
-</tr>
-<tr>
-<td style="width: 275px;">api/v1/empresas/{id}</td>
-<td style="width: 63px; text-align: center;">DELETE</td>
-<td style="width: 253.117px; text-align: left;">Excluir por id</td>
-</tr>
-<tr>
-<td style="width: 275px;">&nbsp;</td>
-<td style="width: 63px; text-align: center;">&nbsp;</td>
-<td style="width: 253.117px; text-align: left;">&nbsp;</td>
-</tr>
-<tr>
-<td style="width: 275px;">Funcion&aacute;rio</td>
-<td style="width: 63px; text-align: center;">&nbsp;</td>
-<td style="width: 253.117px; text-align: left;">&nbsp;</td>
-</tr>
-<tr>
-<td style="width: 275px;">&nbsp;</td>
-<td style="width: 63px; text-align: center;">&nbsp;</td>
-<td style="width: 253.117px; text-align: left;">&nbsp;</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/funcionarios&nbsp;</td>
-<td style="width: 63px; text-align: center;">POST</td>
-<td style="width: 253.117px; text-align: left;">Cadastrar</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/funcionarios/{id}</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Buscar por id</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/funcionarios/cpf/</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Buscar por CPF</td>
-</tr>
-<tr>
-<td style="width: 275px;">/v1/funcionarios/email/</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Buscar por e-mail</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/funcionarios</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Listar todos os funcion&aacute;rios</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/funcionarios/{id}</td>
-<td style="width: 63px; text-align: center;">PUT</td>
-<td style="width: 253.117px; text-align: left;">Atualizar</td>
-</tr>
-<tr>
-<td style="width: 275px;">&nbsp;</td>
-<td style="width: 63px; text-align: center;">&nbsp;</td>
-<td style="width: 253.117px; text-align: left;">&nbsp;</td>
-</tr>
-<tr>
-<td style="width: 275px;">Lan&ccedil;amento</td>
-<td style="width: 63px; text-align: center;">&nbsp;</td>
-<td style="width: 253.117px; text-align: left;">&nbsp;</td>
-</tr>
-<tr>
-<td style="width: 275px;">&nbsp;</td>
-<td style="width: 63px; text-align: center;">&nbsp;</td>
-<td style="width: 253.117px; text-align: left;">&nbsp;</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/lancamentos</td>
-<td style="width: 63px; text-align: center;">POST</td>
-<td style="width: 253.117px; text-align: left;">Cadastrar</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/lancamentos/{id}</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Buscar por id</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/lancamentos/funcionario/{id}</td>
-<td style="width: 63px; text-align: center;">GET</td>
-<td style="width: 253.117px; text-align: left;">Buscar lan&ccedil;amento por funcion&aacute;rio</td>
-</tr>
-<tr>
-<td style="width: 275px;">/api/v1/lancamentos/{id}</td>
-<td style="width: 63px; text-align: center;">PUT</td>
-<td style="width: 253.117px; text-align: left;">Atualizar</td>
+<tr style="height: 18px;">
+<td style="width: 273.167px; height: 18px;">api/v1/empresas/{id}</td>
+<td style="width: 63.3667px; text-align: center; height: 18px;">DELETE</td>
+<td style="width: 250.467px; text-align: left; height: 18px;">Excluir por id</td>
 </tr>
 </tbody>
 </table>
