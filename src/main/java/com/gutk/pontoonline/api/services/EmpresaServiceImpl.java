@@ -47,12 +47,12 @@ public class EmpresaServiceImpl implements EmpresaService
 	public Empresa salvarEmpresa(Empresa novaEmpresa)
 	{
 		// verifica se o CNPJ existe no banco de dados
-		//Boolean existsCNPJ = empresaRepository.existsByCnpj(novaEmpresa.getCnpj());
+		Boolean existsCNPJ = empresaRepository.existsByCnpj(novaEmpresa.getCnpj());
 		
-		//if (existsCNPJ == true)
-		//{
+		if (existsCNPJ == true)
+		{
 			//throw new EmpresaNotFoundException("Existe uma empresa cadastrada com esse CNPJ");
-		//}
+		}
 		return empresaRepository.saveAndFlush(novaEmpresa);
 	}
 

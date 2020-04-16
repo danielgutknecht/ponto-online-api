@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import com.gutk.pontoonline.api.entities.Empresa;
+import com.gutk.pontoonline.api.entities.Funcionario;
 import com.gutk.pontoonline.api.repositories.EmpresaRepository;
 
 @SpringBootTest
@@ -56,10 +57,12 @@ public class empresaServiceTest
 
 	@Test
 	public void testSalvarEmpresa()
-	{
-		Empresa emp = empService.salvarEmpresa(new Empresa());
-
-		assertNotNull(emp);
+	{		
+		Empresa empresa = new Empresa();
+		empresa.setRazaoSocial("empresa LTDA");
+		empService.salvarEmpresa(empresa);
+		
+		assertEquals(empresa.getRazaoSocial(), empresa.getRazaoSocial());
 	}
 	/*
 	 * @Test public void testBuscarEmpresaPorId(){ Empresa func =
