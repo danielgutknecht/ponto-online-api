@@ -15,6 +15,7 @@
 <h2 style="color: #2e6c80;"><span style="color: #000000;">Endpoints</span></h2>
 <p><span style="color: #000000;">&nbsp;</span></p>
 <table><caption>&nbsp;</caption>
+<tbody style="font-size: 16px !important;">
 <thead>
 <tr>
 <th>Empresa</th>
@@ -127,6 +128,7 @@
 <th align="center">Atualizar</th>
 </tr>
 </thead>
+</tbody>
 </table>
 
 ```
