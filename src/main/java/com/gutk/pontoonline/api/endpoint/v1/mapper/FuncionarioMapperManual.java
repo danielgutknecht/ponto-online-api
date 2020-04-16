@@ -31,6 +31,7 @@ public class FuncionarioMapperManual extends RepresentationModelAssemblerSupport
 		funcionarioDto.setQtdHorasTrabalhoDia(funcionario.getQtdHorasTrabalhoDia());
 		funcionarioDto.setQtdHorasAlmoco(funcionario.getQtdHorasAlmoco());
 		//logica especial no método salvar funcionario, para buscar os atributos do relacionamento.
+		funcionarioDto.setFuncionarioId(funcionario.getEmpresa().getId());
 		funcionarioDto.setRazaoSocial(funcionario.getEmpresa().getRazaoSocial());
 		funcionarioDto.setCnpj(funcionario.getEmpresa().getCnpj());
 				

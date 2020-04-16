@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.BusinessException;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.LancamentoNotFoundExceptions;
 import com.gutk.pontoonline.api.endpoint.v1.dto.LancamentoDTO;
+import com.gutk.pontoonline.api.endpoint.v1.dto.input.LancamentoDTOInput;
 import com.gutk.pontoonline.api.endpoint.v1.mapper.LancamentoMapperManual;
 import com.gutk.pontoonline.api.entities.Lancamento;
 import com.gutk.pontoonline.api.services.LancamentoService;
@@ -50,11 +51,11 @@ public class LancamentoController
 
 	@PostMapping(value = "/lancamentos")
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public LancamentoDTO save(@RequestBody @Valid LancamentoDTO lancamentoDto)
+	public LancamentoDTO save(@RequestBody @Valid LancamentoDTOInput lancamentoDtoInput)
 	{
 		try
 		{
-			Lancamento lancamento = lancamentoMapperManual.toDomainObjectLancamento(lancamentoDto);
+			Lancamento lancamento = lancamentoMapperManual.toDomainObjectLancamento(lancamentoDtoInput);
 
 			LancamentoDTO lancamentoDTO = lancamentoMapperManual
 					.toModel(lancamentoService.salvarLancamento(lancamento));

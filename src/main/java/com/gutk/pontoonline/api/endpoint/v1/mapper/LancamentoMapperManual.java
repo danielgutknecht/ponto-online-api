@@ -5,6 +5,7 @@ import org.springframework.hateoas.server.mvc.RepresentationModelAssemblerSuppor
 import org.springframework.stereotype.Component;
 import com.gutk.pontoonline.api.endpoint.v1.controller.LancamentoController;
 import com.gutk.pontoonline.api.endpoint.v1.dto.LancamentoDTO;
+import com.gutk.pontoonline.api.endpoint.v1.dto.input.LancamentoDTOInput;
 import com.gutk.pontoonline.api.entities.Funcionario;
 import com.gutk.pontoonline.api.entities.Lancamento;
 import com.gutk.pontoonline.api.enums.TipoEnum;
@@ -27,6 +28,8 @@ public class LancamentoMapperManual extends RepresentationModelAssemblerSupport<
 		lancamentoDto.setTipo(lancamento.getTipo().toString());
 		lancamentoDto.setLocalizacao(lancamento.getLocalizacao());
 		lancamentoDto.setFuncionarioId(lancamento.getFuncionario().getId());
+		lancamentoDto.setNome(lancamento.getFuncionario().getNome());
+		lancamentoDto.setCpf(lancamento.getFuncionario().getCpf());
 
 		return lancamentoDto;
 	}
@@ -38,16 +41,17 @@ public class LancamentoMapperManual extends RepresentationModelAssemblerSupport<
 		return LancamentoModel;
 	}
 
-	public Lancamento toDomainObjectLancamento(LancamentoDTO lancamentoDto)
+	public Lancamento toDomainObjectLancamento(LancamentoDTOInput lancamentoDtoInput)
 	{
 		Lancamento lancamento = new Lancamento();
 
 		// lancamento.setId(lancamentoDto.getId());
-		lancamento.setDescriacao(lancamentoDto.getDescricao());
-		lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
-		lancamento.setLocalizacao(lancamentoDto.getLocalizacao());
+		lancamento.setDescriacao(lancamentoDtoInput.getDescricao());
+		lancamento.setTipo(TipoEnum.valueOf(lancamentoDtoInput.getTipo()));
+		lancamento.setLocalizacao(lancamentoDtoInput.getLocalizacao());
 		lancamento.setFuncionario(new Funcionario());
-		lancamento.getFuncionario().setId(lancamentoDto.getFuncionarioId());
+		lancamento.getFuncionario().setId(lancamentoDtoInput.getFuncionarioId());
+		
 		return lancamento;
 	}
 

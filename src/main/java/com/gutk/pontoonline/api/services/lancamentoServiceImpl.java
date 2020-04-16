@@ -7,6 +7,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.LancamentoNotFoundExceptions;
+import com.gutk.pontoonline.api.entities.Empresa;
+import com.gutk.pontoonline.api.entities.Funcionario;
 import com.gutk.pontoonline.api.entities.Lancamento;
 import com.gutk.pontoonline.api.repositories.LancamentoRepository;
 
@@ -16,6 +18,8 @@ public class lancamentoServiceImpl implements LancamentoService
 
 	@Autowired
 	private LancamentoRepository lancamentoRepository;
+	@Autowired
+	private FuncionarioService funcionarioService;
 
 	@Override
 	public Page<Lancamento> buscarLancamentoPorFuncionarioId(Long funcionarioId, Pageable page)
@@ -32,7 +36,14 @@ public class lancamentoServiceImpl implements LancamentoService
 	@Override
 	public Lancamento salvarLancamento(Lancamento novoLancamento)
 	{
-
+		// Atribui o id para funcionario
+		Long funcionarioId = novoLancamento.getFuncionario().getId();
+		// busca o id no banco de dados
+		Funcionario funcionario = funcionarioService.buscarFuncionarioPorId(funcionarioId);
+		// Atribui id ao funcionario (fechando o relacionamento)
+		novoLancamento.setFuncionario(funcionario);
+		
+		// salva a empresa.
 		return lancamentoRepository.save(novoLancamento);
 	}
 

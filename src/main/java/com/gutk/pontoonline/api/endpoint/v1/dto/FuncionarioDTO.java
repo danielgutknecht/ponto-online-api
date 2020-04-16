@@ -13,6 +13,7 @@ public class FuncionarioDTO extends RepresentationModel<FuncionarioDTO>
 	private Float valorHora;
 	private Float qtdHorasTrabalhoDia;
 	private Float qtdHorasAlmoco;
+	private Long funcionarioId;
 	private String razaoSocial;
 	private String cnpj;
 
@@ -94,6 +95,16 @@ public class FuncionarioDTO extends RepresentationModel<FuncionarioDTO>
 	public void setQtdHorasAlmoco(Float qtdHorasAlmoco)
 	{
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
+	}
+		
+	public Long getFuncionarioId()
+	{
+		return funcionarioId;
+	}
+
+	public void setFuncionarioId(Long funcionarioId)
+	{
+		this.funcionarioId = funcionarioId;
 	}
 
 	public String getRazaoSocial()

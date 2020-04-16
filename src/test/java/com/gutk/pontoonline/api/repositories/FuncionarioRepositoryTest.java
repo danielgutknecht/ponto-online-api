@@ -1,5 +1,6 @@
 package com.gutk.pontoonline.api.repositories;
 
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import org.junit.jupiter.api.AfterEach;
@@ -12,9 +13,11 @@ import com.gutk.pontoonline.api.entities.Empresa;
 import com.gutk.pontoonline.api.entities.Funcionario;
 import com.gutk.pontoonline.api.enums.PerfilEnum;
 
+
 @SpringBootTest
 @ActiveProfiles("test")
-public class FuncionarioRepositoryTest {
+public class FuncionarioRepositoryTest
+{
 
 	@Autowired
 	private FuncionarioRepository funcRepository;
@@ -26,8 +29,8 @@ public class FuncionarioRepositoryTest {
 	private static final String CPF = "01359072099";
 
 	@BeforeEach
-	public void setUp() {
-		
+	public void setUp()
+	{
 
 		Empresa empresa = empRepository.save(obterDadosEmpresa());
 		Funcionario funcionario = funcRepository.save(obterDadosFuncionario(empresa));
@@ -35,42 +38,59 @@ public class FuncionarioRepositoryTest {
 	}
 
 	@AfterEach
-	public final void tearDown() {
+	public final void tearDown()
+	{
 		empRepository.deleteAll();
 	}
 
 	@Test
-	public void testBuscarFuncionarioPorEmail() {
+	public void testBuscarFuncionarioPorEmail()
+	{
 		Funcionario func = funcRepository.findByEmail(EMAIL);
 
 		assertEquals(EMAIL, func.getEmail());
 	}
-	
+
 	@Test
-	public void testBuscaFuncionarioPorCpf() {
+	public void testBuscaFuncionarioPorCpf()
+	{
 		Funcionario func = funcRepository.findByCpf(CPF);
 		assertNotNull(func);
 	}
-	
+
 	@Test
-	public void testBuscarFuncionarioPorCpfOuEmail() {
+	public void testBuscarFuncionarioPorCpfOuEmail()
+	{
 		Funcionario func = funcRepository.findByCpfOrEmail(CPF, EMAIL);
 		assertNotNull(func);
 	}
-	
+
 	@Test
-	public void testBuscarFuncionarioPorEmailouCpfParaEmailInvalido() {
+	public void testBuscarFuncionarioPorEmailouCpfParaEmailInvalido()
+	{
 		Funcionario func = funcRepository.findByCpfOrEmail(CPF, "email@invalido.com");
 		assertNotNull(func);
 	}
-	
+
 	@Test
-	public void testBuscarFuncionarioPorEmailOuCpfParaCpfInvalido() {
+	public void testBuscarFuncionarioPorEmailOuCpfParaCpfInvalido()
+	{
 		Funcionario func = funcRepository.findByCpfOrEmail("12345678900", EMAIL);
 		assertNotNull(func);
 	}
 
-	private Funcionario obterDadosFuncionario(Empresa empresa) {
+	@Test
+	public void testSalvarFuncionario()
+	{
+		Funcionario funcionario = new Funcionario();
+		funcionario.setNome("Daniel");
+		Funcionario func = funcRepository.save(funcionario);
+		
+		assertEquals(funcionario.getNome(), func.getNome());
+	}
+
+	private Funcionario obterDadosFuncionario(Empresa empresa)
+	{
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Fulano de Tal");
 		funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
@@ -81,7 +101,8 @@ public class FuncionarioRepositoryTest {
 		return funcionario;
 	}
 
-	private Empresa obterDadosEmpresa() {
+	private Empresa obterDadosEmpresa()
+	{
 		Empresa empresa = new Empresa();
 		empresa.setRazaoSocial("Empresa de exemplo");
 		empresa.setCnpj("51463645000100");

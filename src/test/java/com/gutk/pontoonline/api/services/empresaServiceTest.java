@@ -1,5 +1,6 @@
 package com.gutk.pontoonline.api.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +16,8 @@ import com.gutk.pontoonline.api.repositories.EmpresaRepository;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class empresaServiceTest {
+public class empresaServiceTest
+{
 
 	@MockBean
 	private EmpresaRepository empRepository;
@@ -26,46 +28,52 @@ public class empresaServiceTest {
 	private static final String CNPJ = "05432187100193";
 
 	@BeforeEach
-	public void setUp() {
-		
-		Empresa emp = new 	Empresa();
-		
+	public void setUp()
+	{
+
+		Empresa emp = empRepository.save(obterDadosEmpresa());
+
 		BDDMockito.given(empRepository.findByCnpj(Mockito.anyString())).willReturn(new Empresa());
 		BDDMockito.given(empRepository.save(Mockito.any(Empresa.class))).willReturn(new Empresa());
-		BDDMockito.when(empRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(emp));
-		
-		
+		BDDMockito.when(empRepository.findById(Mockito.anyLong())).thenReturn(Optional.of(new Empresa()));
+
 	}
 
 	/*
-	@Test
-	public void testBuscaEmpresaPorCnpj() {
-		Optional<Empresa> emp = empService.buscarPorCnpj(CNPJ);
+	 * @Test public void testBuscaEmpresaPorCnpj() { Optional<Empresa> emp =
+	 * empService.buscarPorCnpj(CNPJ);
+	 * 
+	 * assertTrue(emp.isPresent()); }
+	 */
 
-		assertTrue(emp.isPresent());
-	}
-	*/
-	
 	@Test
-	public void testBuscarEmpresaPorCnpj() {
+	public void testBuscarEmpresaPorCnpj()
+	{
 		Empresa empresa = empService.buscarEmpresaPorCnpj(CNPJ);
 
 		assertNotNull(empresa);
 	}
-	
+
 	@Test
-	public void testSalvarEmpresa() {
+	public void testSalvarEmpresa()
+	{
 		Empresa emp = empService.salvarEmpresa(new Empresa());
-		
+
 		assertNotNull(emp);
 	}
 	/*
-	@Test
-	public void testBuscarEmpresaPorId(){
-		Empresa func = empService.buscarEmpresaPorId(1L);
+	 * @Test public void testBuscarEmpresaPorId(){ Empresa func =
+	 * empService.buscarEmpresaPorId(1L);
+	 * 
+	 * assertNotNull(func); }
+	 */
 
-		assertNotNull(func);
+	private Empresa obterDadosEmpresa()
+	{
+		Empresa empresa = new Empresa();
+		empresa.setRazaoSocial("Empresa de exemplo");
+		empresa.setCnpj(CNPJ);
+		return empresa;
 	}
-	*/	
 
 }

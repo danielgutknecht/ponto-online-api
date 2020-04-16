@@ -46,8 +46,9 @@ public class FuncionarioServiceImpl implements FuncionarioService
 	{
 
 		// verifica se o E-mail existe no banco de dados
-		Boolean func = funcionarioRepository.existsByEmail(email);
-		if (func == false)
+		//Boolean func = funcionarioRepository.existsByEmail(email);
+		Funcionario func = funcionarioRepository.findByEmail(email);
+		if (func == null)
 		{
 			throw new FuncionarioNotFoundException("E-mail não foi encontrado");
 		}
@@ -84,7 +85,7 @@ public class FuncionarioServiceImpl implements FuncionarioService
 			throw new FuncionarioNotFoundException("Existe um funcionario já cadastrado esse CPF.");
 		}
 
-		// Atribui o id da empresa
+		// Atribui o id para empresa
 		Long empresaId = novoFuncionario.getEmpresa().getId();
 
 		// busca o id no banco de dados
