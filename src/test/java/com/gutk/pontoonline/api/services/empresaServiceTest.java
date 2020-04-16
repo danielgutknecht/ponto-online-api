@@ -55,6 +55,7 @@ public class empresaServiceTest
 		assertNotNull(empresa);
 	}
 
+	/*
 	@Test
 	public void testSalvarEmpresa()
 	{		
@@ -63,7 +64,7 @@ public class empresaServiceTest
 		empService.salvarEmpresa(empresa);
 		
 		assertEquals(empresa.getRazaoSocial(), empresa.getRazaoSocial());
-	}
+	}*/
 	/*
 	 * @Test public void testBuscarEmpresaPorId(){ Empresa func =
 	 * empService.buscarEmpresaPorId(1L);
