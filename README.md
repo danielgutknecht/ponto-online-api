@@ -11,123 +11,124 @@
 <li><span style="color: #000000;">Hateos</span></li>
 <li><span style="color: #000000;">Handling exceptions and errors</span></li>
 </ul>
+
 <h2 style="color: #2e6c80;"><span style="color: #000000;">Endpoints</span></h2>
-<table style="width: 610.167px; margin-left: auto; margin-right: auto;"><caption>&nbsp;</caption>
+<p><span style="color: #000000;">&nbsp;</span></p>
+<table><caption>&nbsp;</caption>
 <thead>
 <tr>
-<th style="width: 99px; text-align: center;"><span style="color: #000000;">Empresa</span></th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>Empresa</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px;">&nbsp;</th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>&nbsp;</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;"><span style="color: #000000;">/api/v1/empresas</span></th>
-<th style="width: 10px;" align="center"><span style="color: #000000;">POST</span></th>
-<th style="width: 44.1667px;" align="center"><span style="color: #000000;">Cadastrar </span></th>
+<th>/api/v1/empresas</th>
+<th align="center">POST</th>
+<th align="center">Cadastrar</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;"><span style="color: #000000;">/api/v1/empresas/cnpj/{cnpj}</span></th>
-<th style="width: 10px;" align="center"><span style="color: #000000;">GET</span></th>
-<th style="width: 44.1667px;" align="center"><span style="color: #000000;">Buscar por CNPJ</span></th>
+<th>/api/v1/empresas/cnpj/{cnpj}</th>
+<th align="center">GET</th>
+<th align="center">Buscar por CNPJ</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;"><span style="color: #000000;">/api/v1/empresas</span></th>
-<th style="width: 10px;" align="center"><span style="color: #000000;">GET</span></th>
-<th style="width: 44.1667px;" align="center"><span style="color: #000000;">Listar todas empresa</span></th>
+<th>/api/v1/empresas</th>
+<th align="center">GET</th>
+<th align="center">Listar todas empresa</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;"><span style="color: #000000;">/api/v1/empresas/{id}</span></th>
-<th style="width: 10px;" align="center"><span style="color: #000000;">DELETE</span></th>
-<th style="width: 44.1667px;" align="center"><span style="color: #000000;">Excluir por id</span></th>
+<th>/api/v1/empresas/{id}</th>
+<th align="center">DELETE</th>
+<th align="center">Excluir por id</th>
 </tr>
 <tr>
-<th style="width: 99px;">&nbsp;</th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>&nbsp;</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px;"><span style="color: #000000;">Funcion&aacute;rio</span></th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>Funcion&aacute;rio</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px;">&nbsp;</th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>&nbsp;</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/funcionarios&nbsp;</th>
-<th style="width: 10px;" align="center">POST</th>
-<th style="width: 44.1667px;" align="center">Cadastrar</th>
+<th>/api/v1/funcionarios&nbsp;</th>
+<th align="center">POST</th>
+<th align="center">Cadastrar</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/funcionarios/{id}</th>
-<th style="width: 10px;" align="center">GET</th>
-<th style="width: 44.1667px;" align="center">Buscar por id</th>
+<th>/api/v1/funcionarios/{id}</th>
+<th align="center">GET</th>
+<th align="center">Buscar por id</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/funcionarios/cpf/</th>
-<th style="width: 10px;" align="center">GET</th>
-<th style="width: 44.1667px;" align="center">Buscar por CPF</th>
+<th>/api/v1/funcionarios/cpf/</th>
+<th align="center">GET</th>
+<th align="center">Buscar por CPF</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/v1/funcionarios/email/</th>
-<th style="width: 10px;" align="center">GET</th>
-<th style="width: 44.1667px;" align="center">Buscar por e-mail</th>
+<th>/v1/funcionarios/email/</th>
+<th align="center">GET</th>
+<th align="center">Buscar por e-mail</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/funcionarios</th>
-<th style="width: 10px;" align="center">GET</th>
-<th style="width: 44.1667px;" align="center">Listar todos os funcion&aacute;rios</th>
+<th>/api/v1/funcionarios</th>
+<th align="center">GET</th>
+<th align="center">Listar todos os funcion&aacute;rios</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/funcionarios/{id}</th>
-<th style="width: 10px;" align="center">PUT</th>
-<th style="width: 44.1667px;" align="center">Atualizar</th>
+<th>/api/v1/funcionarios/{id}</th>
+<th align="center">PUT</th>
+<th align="center">Atualizar</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">&nbsp;</th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>&nbsp;</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: center;">Lan&ccedil;amento</th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>Lan&ccedil;amento</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: center;">&nbsp;</th>
-<th style="width: 10px;" align="center">&nbsp;</th>
-<th style="width: 44.1667px;" align="center">&nbsp;</th>
+<th>&nbsp;</th>
+<th align="center">&nbsp;</th>
+<th align="center">&nbsp;</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/lancamentos</th>
-<th style="width: 10px;" align="center">POST</th>
-<th style="width: 44.1667px;" align="center">Cadastrar</th>
+<th>/api/v1/lancamentos</th>
+<th align="center">POST</th>
+<th align="center">Cadastrar</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/lancamentos/{id}</th>
-<th style="width: 10px;" align="center">GET</th>
-<th style="width: 44.1667px;" align="center">Buscar por id</th>
+<th>/api/v1/lancamentos/{id}</th>
+<th align="center">GET</th>
+<th align="center">Buscar por id</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/lancamentos/funcionario/2</th>
-<th style="width: 10px;" align="center">GET</th>
-<th style="width: 44.1667px;" align="center">Buscar lan&ccedil;amento por funcion&aacute;rio</th>
+<th>/api/v1/lancamentos/funcionario/2</th>
+<th align="center">GET</th>
+<th align="center">Buscar lan&ccedil;amento por funcion&aacute;rio</th>
 </tr>
 <tr>
-<th style="width: 99px; text-align: left;">/api/v1/lancamentos/{id}</th>
-<th style="width: 10px;" align="center">PUT</th>
-<th style="width: 44.1667px;" align="center">Atualizar</th>
+<th>/api/v1/lancamentos/{id}</th>
+<th align="center">PUT</th>
+<th align="center">Atualizar</th>
 </tr>
 </thead>
 </table>
-<div id="readme" class="Box-body readme blob js-code-block-container px-5">&nbsp;
- 
+
 ```
 Give the example
 ```  
