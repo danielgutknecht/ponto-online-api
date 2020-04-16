@@ -42,8 +42,11 @@
 </tr>
 </tbody>
 </table>
-
+<p>Cadastrar Empresa</p>
 ```
-Give the example
+{	
+	"razaoSocial": "Gutk LTDA",
+	"cnpj": "70906492000164"
+}
 ```  
 </div>
