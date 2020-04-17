@@ -43,11 +43,11 @@
 </tbody>
 </table>
 <p>Cadastrar Empresa</p>
-<table style="height: 80px; width: 207px;">
-<tbody>
-<tr>
-<td style="width: 197px;">{ <br /> "razaoSocial": "Gutk LTDA",<br /> "cnpj": "70906492000164"<br />}</td>
-</tr>
-</tbody>
-</table> 
+
+```
+{
+	"razaoSocial": "Gutk LTDA",
+	"cnpj": "70906492000164"
+}
+```  
 </div>
