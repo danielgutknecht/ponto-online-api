@@ -13,13 +13,9 @@
 </ul>
 
 <h2 style="color: #2e6c80;"><span style="color: #000000;">Endpoints</span></h2>
+Empresa
 <table style="height: 145px; width: 609px;">
 <tbody>
-<tr style="height: 2px;">
-<td style="width: 273.167px; height: 2px;">Empresa</td>
-<td style="width: 63.3667px; height: 2px;">&nbsp;</td>
-<td style="width: 250.467px; height: 2px;">&nbsp;</td>
-</tr>
 <tr style="height: 2px;">
 <td style="width: 273.167px; height: 2px;">/api/v1/empresas</td>
 <td style="width: 63.3667px; text-align: center; height: 2px;">POST</td>
@@ -50,7 +46,7 @@
 	"cnpj": "70906492000164"
 }
 ```
-Funcionarios
+Funcionários
 
 <table style="height: 145px; width: 609px;">
 <tbody>
@@ -91,3 +87,57 @@ Funcionarios
 </tr>
 </tbody>
 </table>
+#Cadastrar Funcionário
+
+```JSON
+{
+	"nome": "Daniel",
+	"email": "daniel@gutk.com",
+	"senha": "123456",
+	"cpf": "98243013059",
+	"valorHora": "50",
+	"qtdHorasTrabalhoDia": "8",
+	"qtdHorasAlmoco": "1",
+	"empresaId": "1"
+}
+```
+Lançamentos
+<table style="height: 145px; width: 609px;">
+<tbody>
+<tr style="height: 2px;">
+<td style="width: 273.167px; height: 2px;">/api/v1/lancamentos</td>
+<td style="width: 63.3667px; text-align: center; height: 2px;">POST</td>
+<td style="width: 250.467px; text-align: left; height: 2px;">Cadastrar</td>
+</tr>
+<tr style="height: 12px;">
+<td style="width: 273.167px; height: 12px;">/api/v1/lancamentos/{id}</td>
+<td style="width: 63.3667px; text-align: center; height: 12px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 12px;">Buscar por id</td>
+</tr>
+<tr style="height: 4px;">
+<td style="width: 273.167px; height: 4px;">/api/v1/lancamentos/funcionario/{id}</td>
+<td style="width: 63.3667px; text-align: center; height: 4px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 4px;">Buscar lan&ccedil;amento por funcion&aacute;rio</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 273.167px; height: 18px;">/api/v1/lancamentos/{id}</td>
+<td style="width: 63.3667px; text-align: center; height: 18px;">PUT</td>
+<td style="width: 250.467px; text-align: left; height: 18px;">Atualizar</td>
+</tr>
+</tbody>
+</table>
+
+#Cadastrar lançamento
+
+```JSON
+{
+	"nome": "Daniel",
+	"email": "daniel@gutk.com",
+	"senha": "123456",
+	"cpf": "98243013059",
+	"valorHora": "50",
+	"qtdHorasTrabalhoDia": "8",
+	"qtdHorasAlmoco": "1",
+	"empresaId": "1"
+}
+```
