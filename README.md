@@ -42,15 +42,17 @@
 </tr>
 </tbody>
 </table>
-<p>Cadastrar Empresa</p>
+#Cadastrar Empresa
 
-```
+```JSON
 {
 	"razaoSocial": "Gutk LTDA",
 	"cnpj": "70906492000164"
 }
-````
+```
+Funcionarios
 
+<table style="height: 145px; width: 609px;">
 <tbody>
 <tr style="height: 2px;">
 <td style="width: 273.167px; height: 2px;">Funcion&aacute;rio</td>
@@ -89,4 +91,3 @@
 </tr>
 </tbody>
 </table>
-<p>Cadastrar Funcion&aacute;rio</p>
