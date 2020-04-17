@@ -51,11 +51,6 @@ Funcionários
 <table style="height: 145px; width: 609px;">
 <tbody>
 <tr style="height: 2px;">
-<td style="width: 273.167px; height: 2px;">Funcion&aacute;rio</td>
-<td style="width: 63.3667px; height: 2px;">&nbsp;</td>
-<td style="width: 250.467px; height: 2px;">&nbsp;</td>
-</tr>
-<tr style="height: 2px;">
 <td style="width: 273.167px; height: 2px;">/api/v1/funcionarios&nbsp;</td>
 <td style="width: 63.3667px; text-align: center; height: 2px;">POST</td>
 <td style="width: 250.467px; text-align: left; height: 2px;">Cadastrar</td>
