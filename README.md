@@ -49,5 +49,44 @@
 	"razaoSocial": "Gutk LTDA",
 	"cnpj": "70906492000164"
 }
-```  
-</div>
+````
+
+<tbody>
+<tr style="height: 2px;">
+<td style="width: 273.167px; height: 2px;">Funcion&aacute;rio</td>
+<td style="width: 63.3667px; height: 2px;">&nbsp;</td>
+<td style="width: 250.467px; height: 2px;">&nbsp;</td>
+</tr>
+<tr style="height: 2px;">
+<td style="width: 273.167px; height: 2px;">/api/v1/funcionarios&nbsp;</td>
+<td style="width: 63.3667px; text-align: center; height: 2px;">POST</td>
+<td style="width: 250.467px; text-align: left; height: 2px;">Cadastrar</td>
+</tr>
+<tr style="height: 12px;">
+<td style="width: 273.167px; height: 12px;">/api/v1/funcionarios/{id}</td>
+<td style="width: 63.3667px; text-align: center; height: 12px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 12px;">Buscar por id</td>
+</tr>
+<tr style="height: 4px;">
+<td style="width: 273.167px; height: 4px;">/api/v1/funcionarios/cpf/</td>
+<td style="width: 63.3667px; text-align: center; height: 4px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 4px;">Buscar por CPF</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 273.167px; height: 18px;">v1/funcionarios/email/</td>
+<td style="width: 63.3667px; text-align: center; height: 18px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 18px;">Buscar por e-mail</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 273.167px; height: 18px;">/api/v1/funcionarios</td>
+<td style="width: 63.3667px; text-align: center; height: 18px;">GET</td>
+<td style="width: 250.467px; text-align: left; height: 18px;">Listar todos os funcion&aacute;rios</td>
+</tr>
+<tr style="height: 18px;">
+<td style="width: 273.167px; height: 18px;">/api/v1/funcionarios/{id}</td>
+<td style="width: 63.3667px; text-align: center; height: 18px;">PUT</td>
+<td style="width: 250.467px; text-align: left; height: 18px;">Atualizar</td>
+</tr>
+</tbody>
+</table>
+<p>Cadastrar Funcion&aacute;rio</p>
