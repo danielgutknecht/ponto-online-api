@@ -1,6 +1,6 @@
 [![Build Status](https://www.travis-ci.org/danielgutknecht/ponto-online-api.svg?branch=master)](https://www.travis-ci.org/danielgutknecht/ponto-online-api)
 <!-- #######  YAY, I AM THE SOURCE EDITOR! #########-->
-<h1 style="color: #2e6c80;"><span style="color: #000000;">API Rest Ponto Online</span></h1>
+<h1 style="color: #2e6c80;"><span style="color: #000000;">Rest API Ponto Online</span></h1>
 <p><span style="color: #000000;">Rest api Ponto Online is an application built with Spring Boot 2, Java 8, Spring Data JPA, PostgreSQL database, handling exceptions and errors, hateoas, JUnit and Mockito for unit test and integration test run in H2 memory database</span>.</p>
 <h2 style="color: #2e6c80;"><span style="color: #000000;">Tecnologias utilizadas:</span></h2>
 <ul>
