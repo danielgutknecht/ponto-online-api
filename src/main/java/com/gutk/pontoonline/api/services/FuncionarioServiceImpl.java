@@ -1,21 +1,16 @@
 package com.gutk.pontoonline.api.services;
 
-import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import com.gutk.pontoonline.api.endpoint.response.exceptions.EmpresaNotFoundException;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.FuncionarioNotFoundException;
 import com.gutk.pontoonline.api.entities.Empresa;
 import com.gutk.pontoonline.api.entities.Funcionario;
 import com.gutk.pontoonline.api.repositories.FuncionarioRepository;
 
 @Service
-public class FuncionarioServiceImpl implements FuncionarioService
-{
+public class FuncionarioServiceImpl implements FuncionarioService {
 
 	@Autowired
 	private FuncionarioRepository funcionarioRepository;
@@ -23,67 +18,26 @@ public class FuncionarioServiceImpl implements FuncionarioService
 	@Autowired
 	private EmpresaService empresaService;
 
-	@Override
-	public Page<Funcionario> listarTodosFuncionarios(Pageable pageable)
-	{
+	public Page<Funcionario> listarTodosFuncionarios(Pageable pageable) {
 		return funcionarioRepository.findAll(pageable);
 	}
 
-	@Override
-	public Funcionario buscarFuncionarioPorCpf(String cpf)
-	{
-		Funcionario funcionario = funcionarioRepository.findByCpf(cpf);
-		if (funcionario == null)
-		{
-			throw new FuncionarioNotFoundException("CPF não encontrado.");
-		}
-
-		return funcionario;
+	public Funcionario buscarFuncionarioPorCpf(String cpf) {
+		return funcionarioRepository.findByCpf(cpf)
+				.orElseThrow(() -> new FuncionarioNotFoundException("CPF NOT FOUND"));
 	}
 
-	@Override
-	public Funcionario buscarFuncionarioPorEmail(String email)
-	{
-
-		// verifica se o E-mail existe no banco de dados
-		//Boolean func = funcionarioRepository.existsByEmail(email);
-		Funcionario func = funcionarioRepository.findByEmail(email);
-		if (func == null)
-		{
-			throw new FuncionarioNotFoundException("E-mail não foi encontrado");
-		}
-
-		return funcionarioRepository.findByEmail(email);
+	public Funcionario buscarFuncionarioPorEmail(String email) {
+		return funcionarioRepository.findByEmail(email)
+				.orElseThrow(() -> new FuncionarioNotFoundException("E-MAIL NOT FOUND"));
 	}
 
-	@Override
-	public Funcionario buscarFuncionarioPorId(Long id)
-	{
-
-		Optional<Funcionario> funcionario = funcionarioRepository.findById(id);
-
-		return funcionario.orElseThrow(() -> new FuncionarioNotFoundException(id));
+	public Funcionario buscarFuncionarioPorId(Long id) {
+		return funcionarioRepository.findById(id).orElseThrow(() -> new FuncionarioNotFoundException(id));
 	}
 
-	/*
-	 * @Override public Funcionario salvarFuncionario(Funcionario novoFuncionario) {
-	 * 
-	 * // verifica se o CPF existe no banco de dados String existsCpf =
-	 * novoFuncionario.getCpf(); Boolean func =
-	 * funcionarioRepository.existsByCpf(existsCpf); if (func == true) { throw new
-	 * FuncionarioNotFoundException("CPF já cadastrado."); }
-	 * 
-	 * return funcionarioRepository.save(novoFuncionario); }
-	 */
-
-	public Funcionario salvarFuncionario(Funcionario novoFuncionario)
-	{
-		// verifica se o funcionário existe no banco.
-		Boolean func = funcionarioRepository.existsByCpf(novoFuncionario.getCpf());
-		if (func == true)
-		{
-			throw new FuncionarioNotFoundException("Existe um funcionario já cadastrado esse CPF.");
-		}
+	public Funcionario salvarFuncionario(Funcionario novoFuncionario) {
+		buscarFuncionarioPorCpf(novoFuncionario.getCpf());
 
 		// Atribui o id para empresa
 		Long empresaId = novoFuncionario.getEmpresa().getId();
@@ -97,23 +51,13 @@ public class FuncionarioServiceImpl implements FuncionarioService
 		return funcionarioRepository.save(novoFuncionario);
 	}
 
-	@Override
-	public Funcionario atualizarFuncionario(Funcionario funcionario)
-	{
+	public Funcionario atualizarFuncionario(Funcionario funcionario) {
 		return funcionarioRepository.save(funcionario);
 	}
 
-	@Override
-	public void deletarPorId(Long id)
-	{
-		try
-		{
-			buscarFuncionarioPorId(id);
-			funcionarioRepository.deleteById(id);
-		} catch (EmptyResultDataAccessException ex)
-		{
-			throw new EmpresaNotFoundException(id);
-		}
+	public void deletarPorId(Long id) {
+		buscarFuncionarioPorId(id);
+		funcionarioRepository.deleteById(id);
 	}
 
 }

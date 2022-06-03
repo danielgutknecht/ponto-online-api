@@ -10,15 +10,13 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @Component
-public final class ResourceUriHelper
-{
+public final class ResourceUriHelper {
 	public static void addUriResponseHeader(Object resourceId) {
-		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri()
-				.path("/{id}")
-				.buildAndExpand(resourceId).toUri();
-		
-		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes()).getResponse();
-		
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(resourceId).toUri();
+
+		HttpServletResponse response = ((ServletRequestAttributes) RequestContextHolder.currentRequestAttributes())
+				.getResponse();
+
 		response.setHeader(HttpHeaders.LOCATION, uri.toString());
 	}
 }

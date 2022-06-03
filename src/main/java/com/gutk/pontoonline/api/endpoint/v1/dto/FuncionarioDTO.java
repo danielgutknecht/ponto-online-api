@@ -2,8 +2,7 @@ package com.gutk.pontoonline.api.endpoint.v1.dto;
 
 import org.springframework.hateoas.RepresentationModel;
 
-public class FuncionarioDTO extends RepresentationModel<FuncionarioDTO>
-{
+public class FuncionarioDTO extends RepresentationModel<FuncionarioDTO> {
 
 	private Long id;
 	private String nome;
@@ -17,114 +16,92 @@ public class FuncionarioDTO extends RepresentationModel<FuncionarioDTO>
 	private String razaoSocial;
 	private String cnpj;
 
-	public Long getId()
-	{
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(Long id)
-	{
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	public String getNome()
-	{
+	public String getNome() {
 		return nome;
 	}
 
-	public void setNome(String nome)
-	{
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public String getEmail()
-	{
+	public String getEmail() {
 		return email;
 	}
 
-	public void setEmail(String email)
-	{
+	public void setEmail(String email) {
 		this.email = email;
 	}
 
-	public String getSenha()
-	{
+	public String getSenha() {
 		return senha;
 	}
 
-	public void setSenha(String senha)
-	{
+	public void setSenha(String senha) {
 		this.senha = senha;
 	}
 
-	public String getCpf()
-	{
+	public String getCpf() {
 		return cpf;
 	}
 
-	public void setCpf(String cpf)
-	{
+	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public Float getValorHora()
-	{
+	public Float getValorHora() {
 		return valorHora;
 	}
 
-	public void setValorHora(Float valorHora)
-	{
+	public void setValorHora(Float valorHora) {
 		this.valorHora = valorHora;
 	}
 
-	public Float getQtdHorasTrabalhoDia()
-	{
+	public Float getQtdHorasTrabalhoDia() {
 		return qtdHorasTrabalhoDia;
 	}
 
-	public void setQtdHorasTrabalhoDia(Float qtdHorasTrabalhoDia)
-	{
+	public void setQtdHorasTrabalhoDia(Float qtdHorasTrabalhoDia) {
 		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
 	}
 
-	public Float getQtdHorasAlmoco()
-	{
+	public Float getQtdHorasAlmoco() {
 		return qtdHorasAlmoco;
 	}
 
-	public void setQtdHorasAlmoco(Float qtdHorasAlmoco)
-	{
+	public void setQtdHorasAlmoco(Float qtdHorasAlmoco) {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
-		
-	public Long getFuncionarioId()
-	{
+
+	public Long getFuncionarioId() {
 		return funcionarioId;
 	}
 
-	public void setFuncionarioId(Long funcionarioId)
-	{
+	public void setFuncionarioId(Long funcionarioId) {
 		this.funcionarioId = funcionarioId;
 	}
 
-	public String getRazaoSocial()
-	{
+	public String getRazaoSocial() {
 		return razaoSocial;
 	}
 
-	public void setRazaoSocial(String razaoSocial)
-	{
+	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
 
-	public String getCnpj()
-	{
+	public String getCnpj() {
 		return cnpj;
 	}
 
-	public void setCnpj(String cnpj)
-	{
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
-	}	
-		
+	}
+
 }

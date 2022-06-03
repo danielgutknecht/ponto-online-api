@@ -25,8 +25,7 @@ import com.gutk.pontoonline.api.services.EmpresaService;
 @RestController
 @RequestMapping(path = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "*")
-public class EmpresaController
-{
+public class EmpresaController {
 
 	@Autowired
 	private EmpresaService empresaService;
@@ -35,45 +34,32 @@ public class EmpresaController
 	private EmpresaMapperManual empresaMapperManual;
 
 	@GetMapping(value = "/empresas")
-	public CollectionModel<EmpresaDTO> findAllEmpresa()
-	{
+	public CollectionModel<EmpresaDTO> findAllEmpresa() {
 		return empresaMapperManual.toCollectionModel(empresaService.listarTodasEmpresas());
 	}
 
 	@GetMapping(value = "/empresas/cnpj/{cnpj}")
-	public EmpresaDTO buscarEmpresaPorCnpj(@PathVariable String cnpj)
-	{
+	public EmpresaDTO buscarEmpresaPorCnpj(@PathVariable String cnpj) {
 		return empresaMapperManual.toModel(empresaService.buscarEmpresaPorCnpj(cnpj));
 	}
-	
-	/*
-	@GetMapping(value = "/empresas/{id}")
-	public EmpresaDTO buscarEmpresaPorId(@PathVariable Long id)
-	{
-		return empresaMapperManual.toModel(empresaService.buscarEmpresaPorId(id));
-	}
-	*/	
-	
+
 	@PostMapping(value = "/empresas")
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public EmpresaDTO save(@RequestBody @Valid EmpresaDTOInput empresaInput)
-	{
-		try
-		{
+	public EmpresaDTO save(@RequestBody @Valid EmpresaDTOInput empresaInput) {
+		try {
 			Empresa empresa = empresaMapperManual.toDomainObject(empresaInput);
 
 			return empresaMapperManual.toModel(empresaService.salvarEmpresa(empresa));
-		} catch (EmpresaNotFoundException ex)
-		{
+		} catch (EmpresaNotFoundException ex) {
 			throw new BusinessException(ex.getMessage(), ex);
 		}
 	}
-	
+
 	@DeleteMapping("empresas/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void deletarEmpresaPorId(@PathVariable("id") Long id) {
 		empresaService.deletarEmpresaById(id);
-		
+
 	}
 
 }

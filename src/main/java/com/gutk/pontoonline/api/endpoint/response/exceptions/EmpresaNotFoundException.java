@@ -1,7 +1,6 @@
 package com.gutk.pontoonline.api.endpoint.response.exceptions;
 
-public class EmpresaNotFoundException extends EntityNotFoundException
-{
+public class EmpresaNotFoundException extends EntityNotFoundException {
 	private static final long serialVersionUID = 1L;
 
 	public EmpresaNotFoundException(String message) {

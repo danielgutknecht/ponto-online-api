@@ -4,30 +4,34 @@ import java.time.OffsetDateTime;
 import java.util.List;
 
 public class ApiError {
-	
-	//@ApiModelProperty(example = "400", position = 1)
+
+	// @ApiModelProperty(example = "400", position = 1)
 	private Integer status;
-	
-	//@ApiModelProperty(example = "2020-01-16T13:45:00.70844Z", position = 5)
+
+	// @ApiModelProperty(example = "2020-01-16T13:45:00.70844Z", position = 5)
 	private OffsetDateTime timestamp;
-	
-	//@ApiModelProperty(example = "https://algafood.com.br/dados-invalidos", position = 10)
+
+	// @ApiModelProperty(example = "https://example.com.br/dados-invalidos",
+	// position = 10)
 	private String type;
-	
-	//@ApiModelProperty(example = "Dados inválidos", position = 15)
+
+	// @ApiModelProperty(example = "Dados inválidos", position = 15)
 	private String title;
-	
-	//@ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.", position = 20)
+
+	// @ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o
+	// preenchimento correto e tente novamente.", position = 20)
 	private String detail;
-	
-	//@ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.", position = 25)
+
+	// @ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o
+	// preenchimento correto e tente novamente.", position = 25)
 	private String userMessage;
-	
-	//@ApiModelProperty(value = "Lista de objetos ou campos que geraram erro (opcional)", position = 30)
+
+	// @ApiModelProperty(value = "Lista de objetos ou campos que geraram erro
+	// (opcional)", position = 30)
 	private List<Object> objects;
 
-
-	public ApiError(Integer status, OffsetDateTime timestamp, String type, String title, String detail, String userMessage, List<Object> objects) {
+	public ApiError(Integer status, OffsetDateTime timestamp, String type, String title, String detail,
+			String userMessage, List<Object> objects) {
 		this.status = status;
 		this.timestamp = timestamp;
 		this.type = type;
@@ -65,16 +69,14 @@ public class ApiError {
 		return objects;
 	}
 
-
-
-	//@ApiModel("ObjetoProblema"
-	//@Builder
+	// @ApiModel("ObjetoProblema"
+	// @Builder
 	public static class Object {
 
-		//@ApiModelProperty(example = "nome")
+		// @ApiModelProperty(example = "nome")
 		private String name;
 
-		//@ApiModelProperty(example = "O campo nome é obrigatório")
+		// @ApiModelProperty(example = "O campo nome é obrigatório")
 		private String userMessage;
 
 		public String getName() {
@@ -86,9 +88,9 @@ public class ApiError {
 		}
 
 		public static final class Builder {
-			//@ApiModelProperty(example = "400", position = 1)
+			// @ApiModelProperty(example = "400", position = 1)
 			private String name;
-			//@ApiModelProperty(example = "2020-01-16T13:45:00.70844Z", position = 5)
+			// @ApiModelProperty(example = "2020-01-16T13:45:00.70844Z", position = 5)
 			private String userMessage;
 
 			public Builder() {
@@ -114,12 +116,9 @@ public class ApiError {
 			}
 
 			/*
-			public ApiError build() {
-				ApiError apiError = new ApiError();
-				apiError. = this.name;
-				apiError.userMessage = this.userMessage;
-				return apiError;
-			}*/
+			 * public ApiError build() { ApiError apiError = new ApiError(); apiError. =
+			 * this.name; apiError.userMessage = this.userMessage; return apiError; }
+			 */
 			public Object build() {
 				Object object = new Object();
 				object.name = this.name;
@@ -131,19 +130,23 @@ public class ApiError {
 	}
 
 	public static final class Builder {
-		//@ApiModelProperty(example = "400", position = 1)
+		// @ApiModelProperty(example = "400", position = 1)
 		private Integer status;
-		//@ApiModelProperty(example = "2020-01-16T13:45:00.70844Z", position = 5)
+		// @ApiModelProperty(example = "2020-01-16T13:45:00.70844Z", position = 5)
 		private OffsetDateTime timestamp;
-		//@ApiModelProperty(example = "https://algafood.com.br/dados-invalidos", position = 10)
+		// @ApiModelProperty(example = "https://example.com.br/dados-invalidos",
+		// position = 10)
 		private String type;
-		//@ApiModelProperty(example = "Dados inválidos", position = 15)
+		// @ApiModelProperty(example = "Dados inválidos", position = 15)
 		private String title;
-		//@ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.", position = 20)
+		// @ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o
+		// preenchimento correto e tente novamente.", position = 20)
 		private String detail;
-		//@ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.", position = 25)
+		// @ApiModelProperty(example = "Um ou mais campos estão inválidos. Faça o
+		// preenchimento correto e tente novamente.", position = 25)
 		private String userMessage;
-		//@ApiModelProperty(value = "Lista de objetos ou campos que geraram erro (opcional)", position = 30)
+		// @ApiModelProperty(value = "Lista de objetos ou campos que geraram erro
+		// (opcional)", position = 30)
 		private List<Object> objects;
 
 		private Builder() {

@@ -1,6 +1,5 @@
 package com.gutk.pontoonline.api.endpoint.v1.controller;
 
-
 import javax.validation.Valid;
 import javax.websocket.server.PathParam;
 
@@ -30,68 +29,59 @@ import com.gutk.pontoonline.api.services.FuncionarioService;
 @RestController
 @RequestMapping(path = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "*")
-public class FuncionarioController
-{
+public class FuncionarioController {
 	@Autowired
 	private FuncionarioService funcionarioService;
-		
+
 	@Autowired
 	private FuncionarioMapperManual funcionarioMapperManual;
 
 	@GetMapping(value = "/funcionarios")
-	public CollectionModel<FuncionarioDTO> listarTodosFuncionarios(Pageable pageable)
-	{
+	public CollectionModel<FuncionarioDTO> listarTodosFuncionarios(Pageable pageable) {
 		return funcionarioMapperManual.toCollectionModel(funcionarioService.listarTodosFuncionarios(pageable));
 	}
 
 	@GetMapping(value = "/funcionarios/cpf/{cpf}")
-	public FuncionarioDTO buscarFuncionarioPorCpf(@PathVariable String cpf)
-	{
+	public FuncionarioDTO buscarFuncionarioPorCpf(@PathVariable String cpf) {
 		return funcionarioMapperManual.toModel(funcionarioService.buscarFuncionarioPorCpf(cpf));
 	}
 
 	@GetMapping(value = "/funcionarios/email/{email}")
-	public FuncionarioDTO buscarEmpresaPorEmail(@PathVariable String email)
-	{
+	public FuncionarioDTO buscarEmpresaPorEmail(@PathVariable String email) {
 		return funcionarioMapperManual.toModel(funcionarioService.buscarFuncionarioPorEmail(email));
 	}
 
 	@GetMapping(value = "/funcionarios/{id}")
-	public FuncionarioDTO buscarEmpresaPorId(@PathVariable Long id)
-	{
+	public FuncionarioDTO buscarEmpresaPorId(@PathVariable Long id) {
 		return funcionarioMapperManual.toModel(funcionarioService.buscarFuncionarioPorId(id));
-	}	
+	}
 
 	@PostMapping(value = "/funcionarios")
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public FuncionarioDTO save(@RequestBody @Valid FuncionarioDTOInput funcionarioDtoInput)
-	{
-		try
-		{
-			Funcionario funcionario = funcionarioMapperManual.toDomainObject(funcionarioDtoInput);			
+	public FuncionarioDTO save(@RequestBody @Valid FuncionarioDTOInput funcionarioDtoInput) {
+		try {
+			Funcionario funcionario = funcionarioMapperManual.toDomainObject(funcionarioDtoInput);
 
 			FuncionarioDTO funcionarioDTO = funcionarioMapperManual
 					.toModel(funcionarioService.salvarFuncionario(funcionario));
 
 			return funcionarioDTO;
-		} catch (FuncionarioNotFoundException ex)
-		{
+		} catch (FuncionarioNotFoundException ex) {
 			throw new BusinessException(ex.getMessage(), ex);
 		}
 	}
 
 	@PutMapping(value = "/funcionarios/{id}")
-	public FuncionarioDTO atualizaFuncionario(@PathVariable() Long id, @RequestBody @Valid FuncionarioDTOInput funcionarioDtoInput)
-	{
-		try
-		{
+	public FuncionarioDTO atualizaFuncionario(@PathVariable() Long id,
+			@RequestBody @Valid FuncionarioDTOInput funcionarioDtoInput) {
+		try {
 			Funcionario funcionarioCorrente = funcionarioService.buscarFuncionarioPorId(id);
 
-			Funcionario funcionario = funcionarioMapperManual.copyToDomainObject(funcionarioDtoInput, funcionarioCorrente);
+			Funcionario funcionario = funcionarioMapperManual.copyToDomainObject(funcionarioDtoInput,
+					funcionarioCorrente);
 
 			return funcionarioMapperManual.toModel(funcionarioService.atualizarFuncionario(funcionario));
-		} catch (FuncionarioNotFoundException ex)
-		{
+		} catch (FuncionarioNotFoundException ex) {
 			throw new BusinessException(ex.getMessage(), ex);
 		}
 	}

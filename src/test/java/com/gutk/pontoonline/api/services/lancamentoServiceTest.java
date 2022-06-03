@@ -10,7 +10,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.BDDMockito;
 import org.mockito.Mockito;
-import org.opentest4j.AssertionFailedError;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -26,8 +25,7 @@ import com.gutk.pontoonline.api.repositories.LancamentoRepository;
 
 @SpringBootTest
 @ActiveProfiles("test")
-public class lancamentoServiceTest
-{
+public class lancamentoServiceTest {
 
 	@MockBean
 	private LancamentoRepository lancRepository;
@@ -36,8 +34,7 @@ public class lancamentoServiceTest
 	private LancamentoService lancService;
 
 	@BeforeEach
-	public void setUp()
-	{
+	public void setUp() {
 
 		Lancamento lanc = new Lancamento();
 
@@ -49,36 +46,31 @@ public class lancamentoServiceTest
 	}
 
 	@Test
-	public void testBuscarLancamentoPorFuncionarioId()
-	{
+	public void testBuscarLancamentoPorFuncionarioId() {
 
-		try
-		{
+		try {
 			Pageable firstPageWithTwoElements = PageRequest.of(0, 2);
 			Page<Lancamento> lanc = lancService.buscarLancamentoPorFuncionarioId(1L, firstPageWithTwoElements);
 			fail("Falha. Uma exceção deve ser lançada!");
-		} catch (LancamentoNotFoundExceptions ex)
-		{
+		} catch (LancamentoNotFoundExceptions ex) {
 			equals(ex.getMessage());
 		}
 
 	}
 
 	@Test
-	public void testBuscarPorLancamentoPorId()
-	{
+	public void testBuscarPorLancamentoPorId() {
 		Lancamento lanc = lancService.buscarLancamentoPorId(1L);
 
 		assertNotNull(lanc);
 	}
 
 	/*
-	@Test
-	public void testCriarLancamento()
-	{
-		Lancamento lanc = lancService.salvarLancamento(new Lancamento());
-
-		assertNotNull(lanc);
-
-	}*/
+	 * @Test public void testCriarLancamento() { Lancamento lanc =
+	 * lancService.salvarLancamento(new Lancamento());
+	 * 
+	 * assertNotNull(lanc);
+	 * 
+	 * }
+	 */
 }

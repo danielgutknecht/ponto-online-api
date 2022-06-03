@@ -5,9 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Optional;
-
 import javax.transaction.Transactional;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -20,7 +18,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ActiveProfiles;
-
 import com.gutk.pontoonline.api.endpoint.response.exceptions.FuncionarioNotFoundException;
 import com.gutk.pontoonline.api.endpoint.response.exceptions.LancamentoNotFoundExceptions;
 import com.gutk.pontoonline.api.entities.Empresa;
@@ -34,8 +31,7 @@ import com.gutk.pontoonline.api.repositories.FuncionarioRepository;
 @SpringBootTest
 //@TestPropertySource("classpath:application-test.properties")
 @ActiveProfiles("test")
-public class funcionarioServiceTest
-{
+public class funcionarioServiceTest {
 
 	@MockBean
 	private FuncionarioRepository funcReposotory;
@@ -52,31 +48,27 @@ public class funcionarioServiceTest
 	private static final String CPF = "01359072099";
 
 	@BeforeEach
-	public void setUp()
-	{
+	public void setUp() {
 		Empresa empresa = new Empresa();
 		Funcionario funcionario = new Funcionario();
 		funcionario.setEmpresa(empresa);
 
 		BDDMockito.when(funcReposotory.findById(Mockito.anyLong())).thenReturn(Optional.of(funcionario));
-		BDDMockito.given(funcReposotory.findByEmail(Mockito.anyString())).willReturn(funcionario);
-		BDDMockito.given(funcReposotory.findByCpf(Mockito.anyString())).willReturn(funcionario);
+		//BDDMockito.given(funcReposotory.findByEmail(Mockito.anyString())).willReturn(funcionario);
+		//BDDMockito.given(funcReposotory.findByCpf(Mockito.anyString())).willReturn(funcionario);
 		BDDMockito.given(funcReposotory.save(Mockito.any(Funcionario.class))).willReturn(funcionario);
-		
 
 	}
 
 	@Test
-	public void testBuscarFuncionarioPorId()
-	{
+	public void testBuscarFuncionarioPorId() {
 		Funcionario func = funcionarioService.buscarFuncionarioPorId(1L);
 
 		assertNotNull(func);
 	}
 
 	@Test
-	public void testBuscarFuncionarioPorEmail()
-	{
+	public void testBuscarFuncionarioPorEmail() {
 
 		Funcionario func = funcionarioService.buscarFuncionarioPorEmail(EMAIL);
 
@@ -84,43 +76,29 @@ public class funcionarioServiceTest
 	}
 
 	@Test
-	public void testBuscarFuncionarioPorCpf()
-	{
+	public void testBuscarFuncionarioPorCpf() {
 		Funcionario func = funcionarioService.buscarFuncionarioPorCpf(CPF);
 
 		assertNotNull(func);
 	}
 
-
 	/*
-	@Test
-	public void testSalvarFuncionario()
-	{		
-		Empresa emp = new Empresa();
-		emp.setId(2L);
-		emp.setRazaoSocial("teste LTDA");
-		emp.setCnpj("70906492000164");
-		Funcionario fun = new Funcionario();
-		fun.setId(1L);
-		fun.setNome("Daniel");
-		fun.setEmpresa(new Empresa());
-		fun.getEmpresa().setId(emp.getId());
+	 * @Test public void testSalvarFuncionario() { Empresa emp = new Empresa();
+	 * emp.setId(2L); emp.setRazaoSocial("teste LTDA");
+	 * emp.setCnpj("70906492000164"); Funcionario fun = new Funcionario();
+	 * fun.setId(1L); fun.setNome("Daniel"); fun.setEmpresa(new Empresa());
+	 * fun.getEmpresa().setId(emp.getId());
+	 * 
+	 * try { Empresa empre = empService.salvarEmpresa(emp); Funcionario func =
+	 * funcionarioService.salvarFuncionario(fun);
+	 * 
+	 * fail("Falha. Uma exceção deve ser lançada!"); } catch
+	 * (FuncionarioNotFoundException ex) { equals(ex.getMessage()); }
+	 * 
+	 * }
+	 */
 
-		try
-		{
-			Empresa empre = empService.salvarEmpresa(emp);
-			Funcionario func = funcionarioService.salvarFuncionario(fun);
-
-			fail("Falha. Uma exceção deve ser lançada!");
-		} catch (FuncionarioNotFoundException ex)
-		{
-			equals(ex.getMessage());
-		}
-
-	}*/
-
-	private Funcionario obterDadosFuncionario(Empresa empresa)
-	{
+	private Funcionario obterDadosFuncionario(Empresa empresa) {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome("Fulano de Tal");
 		funcionario.setPerfil(PerfilEnum.ROLE_USUARIO);
@@ -131,8 +109,7 @@ public class funcionarioServiceTest
 		return funcionario;
 	}
 
-	private Empresa obterDadosEmpresa()
-	{
+	private Empresa obterDadosEmpresa() {
 		Empresa empresa = new Empresa();
 		empresa.setRazaoSocial("Empresa de exemplo");
 		empresa.setCnpj("51463645000100");

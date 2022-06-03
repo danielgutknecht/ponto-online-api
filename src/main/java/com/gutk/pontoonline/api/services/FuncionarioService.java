@@ -6,8 +6,8 @@ import com.gutk.pontoonline.api.entities.Funcionario;
 
 public interface FuncionarioService {
 
-	Page<Funcionario> listarTodosFuncionarios(Pageable pageable);	
-	
+	Page<Funcionario> listarTodosFuncionarios(Pageable pageable);
+
 	Funcionario buscarFuncionarioPorCpf(String cpf);
 
 	Funcionario buscarFuncionarioPorEmail(String email);
@@ -15,9 +15,9 @@ public interface FuncionarioService {
 	Funcionario buscarFuncionarioPorId(Long id);
 
 	Funcionario salvarFuncionario(Funcionario novoFuncionario);
-	
+
 	Funcionario atualizarFuncionario(Funcionario atualizaFuncionario);
 
-	public void deletarPorId(Long id);
+	void deletarPorId(Long id);
 
 }

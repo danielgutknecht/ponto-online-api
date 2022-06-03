@@ -3,29 +3,27 @@ package com.gutk.pontoonline.api.endpoint.v1.dto.input;
 import javax.validation.constraints.NotBlank;
 import org.hibernate.validator.constraints.br.CNPJ;
 
-public class EmpresaDTOInput
-{
-	//id não é necessário! A sequencia é gerada pelo banco
-	private String cnpj;
-	private String razaoSocial;
-	
+public class EmpresaDTOInput {
+
 	@NotBlank
 	@CNPJ(message = "CNPJ inválido!")
-	public String getCnpj()
-	{
+	private String cnpj;
+	@NotBlank(message = "Razão Social não pode ser vazio.")
+	private String razaoSocial;
+
+	public String getCnpj() {
 		return cnpj;
 	}
-	public void setCnpj(String cnpj)
-	{
+
+	public void setCnpj(String cnpj) {
 		this.cnpj = cnpj;
 	}
-	@NotBlank(message = "Razão Social não pode ser vazio." )
-	public String getRazaoSocial()
-	{
+
+	public String getRazaoSocial() {
 		return razaoSocial;
 	}
-	public void setRazaoSocial(String razaoSocial)
-	{
+
+	public void setRazaoSocial(String razaoSocial) {
 		this.razaoSocial = razaoSocial;
 	}
 

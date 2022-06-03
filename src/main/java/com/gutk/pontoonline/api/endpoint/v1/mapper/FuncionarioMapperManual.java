@@ -10,17 +10,14 @@ import com.gutk.pontoonline.api.entities.Empresa;
 import com.gutk.pontoonline.api.entities.Funcionario;
 
 @Component
-public class FuncionarioMapperManual extends RepresentationModelAssemblerSupport<Funcionario, FuncionarioDTO>
-{
-	
-	public FuncionarioMapperManual()
-	{
+public class FuncionarioMapperManual extends RepresentationModelAssemblerSupport<Funcionario, FuncionarioDTO> {
+
+	public FuncionarioMapperManual() {
 		super(FuncionarioController.class, FuncionarioDTO.class);
 	}
 
 	@Override
-	public FuncionarioDTO toModel(Funcionario funcionario)
-	{
+	public FuncionarioDTO toModel(Funcionario funcionario) {
 		FuncionarioDTO funcionarioDto = createModelWithId(funcionario.getId(), funcionario);
 		funcionarioDto.setId(funcionario.getId());
 		funcionarioDto.setNome(funcionario.getNome());
@@ -30,24 +27,22 @@ public class FuncionarioMapperManual extends RepresentationModelAssemblerSupport
 		funcionarioDto.setValorHora(funcionario.getValorHora());
 		funcionarioDto.setQtdHorasTrabalhoDia(funcionario.getQtdHorasTrabalhoDia());
 		funcionarioDto.setQtdHorasAlmoco(funcionario.getQtdHorasAlmoco());
-		//logica especial no método salvar funcionario, para buscar os atributos do relacionamento.
+		// logica especial no método salvar funcionario, para buscar os atributos do
+		// relacionamento.
 		funcionarioDto.setFuncionarioId(funcionario.getEmpresa().getId());
 		funcionarioDto.setRazaoSocial(funcionario.getEmpresa().getRazaoSocial());
 		funcionarioDto.setCnpj(funcionario.getEmpresa().getCnpj());
-				
+
 		return funcionarioDto;
 	}
 
 	@Override
-	public CollectionModel<FuncionarioDTO> toCollectionModel(Iterable<? extends Funcionario> entities)
-	{
+	public CollectionModel<FuncionarioDTO> toCollectionModel(Iterable<? extends Funcionario> entities) {
 		CollectionModel<FuncionarioDTO> funcionarioModel = super.toCollectionModel(entities);
 		return funcionarioModel;
 	}
 
-
-	public Funcionario toDomainObject(FuncionarioDTOInput funcionarioInput)
-	{
+	public Funcionario toDomainObject(FuncionarioDTOInput funcionarioInput) {
 		Funcionario funcionario = new Funcionario();
 		funcionario.setNome(funcionarioInput.getNome());
 		funcionario.setEmail(funcionarioInput.getEmail());
@@ -60,9 +55,8 @@ public class FuncionarioMapperManual extends RepresentationModelAssemblerSupport
 		funcionario.getEmpresa().setId(funcionarioInput.getEmpresaId());
 		return funcionario;
 	}
-	
-	public Funcionario copyToDomainObject(FuncionarioDTOInput funcionarioInput, Funcionario funcionario)
-	{
+
+	public Funcionario copyToDomainObject(FuncionarioDTOInput funcionarioInput, Funcionario funcionario) {
 		funcionario.setNome(funcionarioInput.getNome());
 		funcionario.setEmail(funcionarioInput.getEmail());
 		funcionario.setSenha(funcionarioInput.getSenha());

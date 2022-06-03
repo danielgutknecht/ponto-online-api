@@ -11,17 +11,14 @@ import com.gutk.pontoonline.api.entities.Lancamento;
 import com.gutk.pontoonline.api.enums.TipoEnum;
 
 @Component
-public class LancamentoMapperManual extends RepresentationModelAssemblerSupport<Lancamento, LancamentoDTO>
-{
+public class LancamentoMapperManual extends RepresentationModelAssemblerSupport<Lancamento, LancamentoDTO> {
 
-	public LancamentoMapperManual()
-	{
+	public LancamentoMapperManual() {
 		super(LancamentoController.class, LancamentoDTO.class);
 	}
 
 	@Override
-	public LancamentoDTO toModel(Lancamento lancamento)
-	{
+	public LancamentoDTO toModel(Lancamento lancamento) {
 		LancamentoDTO lancamentoDto = createModelWithId(lancamento.getId(), lancamento);
 		lancamentoDto.setId(lancamento.getId());
 		lancamentoDto.setDescricao(lancamento.getDescriacao());
@@ -35,14 +32,12 @@ public class LancamentoMapperManual extends RepresentationModelAssemblerSupport<
 	}
 
 	@Override
-	public CollectionModel<LancamentoDTO> toCollectionModel(Iterable<? extends Lancamento> entities)
-	{
+	public CollectionModel<LancamentoDTO> toCollectionModel(Iterable<? extends Lancamento> entities) {
 		CollectionModel<LancamentoDTO> LancamentoModel = super.toCollectionModel(entities);
 		return LancamentoModel;
 	}
 
-	public Lancamento toDomainObjectLancamento(LancamentoDTOInput lancamentoDtoInput)
-	{
+	public Lancamento toDomainObjectLancamento(LancamentoDTOInput lancamentoDtoInput) {
 		Lancamento lancamento = new Lancamento();
 
 		// lancamento.setId(lancamentoDto.getId());
@@ -51,18 +46,17 @@ public class LancamentoMapperManual extends RepresentationModelAssemblerSupport<
 		lancamento.setLocalizacao(lancamentoDtoInput.getLocalizacao());
 		lancamento.setFuncionario(new Funcionario());
 		lancamento.getFuncionario().setId(lancamentoDtoInput.getFuncionarioId());
-		
+
 		return lancamento;
 	}
 
-	public Lancamento copyToDomainObject(LancamentoDTO lancamentoDto, Lancamento lancamento)
-	{
+	public Lancamento copyToDomainObject(LancamentoDTO lancamentoDto, Lancamento lancamento) {
 		lancamento.setId(lancamentoDto.getId());
 		lancamento.setDescriacao(lancamentoDto.getDescricao());
 		lancamento.setTipo(TipoEnum.valueOf(lancamentoDto.getTipo()));
 		lancamento.setLocalizacao(lancamentoDto.getLocalizacao());
-		//lancamento.setFuncionario(new Funcionario());
-		//lancamento.getFuncionario().setId(lancamentoDto.getFuncionarioId());
+		// lancamento.setFuncionario(new Funcionario());
+		// lancamento.getFuncionario().setId(lancamentoDto.getFuncionarioId());
 		return lancamento;
 
 	}

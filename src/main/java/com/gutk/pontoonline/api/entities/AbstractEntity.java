@@ -14,12 +14,14 @@ public abstract class AbstractEntity implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Long id;
-	private Date createAt;
-	private Date modifiedAt;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Long id;
+	@CreationTimestamp
+	private Date createAt;
+	@UpdateTimestamp
+	private Date modifiedAt;
+
 	public Long getId() {
 		return id;
 	}
@@ -27,9 +29,7 @@ public abstract class AbstractEntity implements Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
-	@CreationTimestamp
+
 	public Date getCreateAt() {
 		return createAt;
 	}
@@ -37,8 +37,7 @@ public abstract class AbstractEntity implements Serializable {
 	public void setCreateAt(Date createAt) {
 		this.createAt = createAt;
 	}
-	
-	@UpdateTimestamp
+
 	public Date getModifiedAt() {
 		return modifiedAt;
 	}

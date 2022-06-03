@@ -28,8 +28,7 @@ import com.gutk.pontoonline.api.services.LancamentoService;
 @RestController
 @RequestMapping(path = "/api/v1", produces = MediaType.APPLICATION_JSON_VALUE)
 @CrossOrigin(origins = "*")
-public class LancamentoController
-{
+public class LancamentoController {
 
 	@Autowired
 	private LancamentoService lancamentoService;
@@ -38,48 +37,40 @@ public class LancamentoController
 	private LancamentoMapperManual lancamentoMapperManual;
 
 	@GetMapping(value = "/lancamentos")
-	public CollectionModel<LancamentoDTO> listarTodosLancamentos(Pageable pageable)
-	{
+	public CollectionModel<LancamentoDTO> listarTodosLancamentos(Pageable pageable) {
 		return lancamentoMapperManual.toCollectionModel(lancamentoService.listarTodosLancamentos(pageable));
 	}
 
 	@GetMapping(value = "/lancamentos/{id}")
-	public LancamentoDTO buscarLancamentosPorId(@PathVariable Long id)
-	{
+	public LancamentoDTO buscarLancamentosPorId(@PathVariable Long id) {
 		return lancamentoMapperManual.toModel(lancamentoService.buscarLancamentoPorId(id));
 	}
 
 	@PostMapping(value = "/lancamentos")
 	@ResponseStatus(value = HttpStatus.CREATED)
-	public LancamentoDTO save(@RequestBody @Valid LancamentoDTOInput lancamentoDtoInput)
-	{
-		try
-		{
+	public LancamentoDTO save(@RequestBody @Valid LancamentoDTOInput lancamentoDtoInput) {
+		try {
 			Lancamento lancamento = lancamentoMapperManual.toDomainObjectLancamento(lancamentoDtoInput);
 
 			LancamentoDTO lancamentoDTO = lancamentoMapperManual
 					.toModel(lancamentoService.salvarLancamento(lancamento));
 
 			return lancamentoDTO;
-		} catch (LancamentoNotFoundExceptions ex)
-		{
+		} catch (LancamentoNotFoundExceptions ex) {
 			throw new BusinessException(ex.getMessage(), ex);
 		}
 	}
 
 	@GetMapping(value = "/lancamentos/funcionario/{funcionarioId}")
 	public CollectionModel<LancamentoDTO> buscarLancamentosPorFuncionario(@PathVariable Long funcionarioId,
-			Pageable pageable)
-	{
+			Pageable pageable) {
 		return lancamentoMapperManual
 				.toCollectionModel(lancamentoService.buscarLancamentoPorFuncionarioId(funcionarioId, pageable));
 	}
 
 	@PutMapping(value = "/lancamentos/{id}")
-	public LancamentoDTO atualizarLancamento(@PathVariable() Long id, @RequestBody @Valid LancamentoDTO lancamentoDto)
-	{
-		try
-		{
+	public LancamentoDTO atualizarLancamento(@PathVariable() Long id, @RequestBody @Valid LancamentoDTO lancamentoDto) {
+		try {
 			Lancamento lancamentoCorrente = lancamentoService.buscarLancamentoPorId(id);
 
 			Lancamento lancamento = lancamentoMapperManual.copyToDomainObject(lancamentoDto, lancamentoCorrente);
@@ -88,16 +79,14 @@ public class LancamentoController
 					.toModel(lancamentoService.atualizarLancamento(lancamentoCorrente));
 
 			return lancamentoDTO;
-		} catch (LancamentoNotFoundExceptions ex)
-		{
+		} catch (LancamentoNotFoundExceptions ex) {
 			throw new BusinessException(ex.getMessage(), ex);
 		}
 	}
 
 	@DeleteMapping("/lancamentos/{id}")
 	@ResponseStatus(HttpStatus.NO_CONTENT)
-	public void delete(@PathVariable Long id)
-	{
+	public void delete(@PathVariable Long id) {
 		lancamentoService.deletarLancamentoPorId(id);
 	}
 }

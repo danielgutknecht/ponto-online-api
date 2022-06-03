@@ -35,8 +35,7 @@ import com.gutk.pontoonline.api.endpoint.response.exceptions.ValidationException
 
 //@Slf4j
 @ControllerAdvice
-public class ApiExceptionHandler extends ResponseEntityExceptionHandler
-{
+public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 	private static final Logger log = LoggerFactory.getLogger(ApiExceptionHandler.class);
 
 	public static final String GENERIC_ERROR_MESSAGE = "Ocorreu um erro interno inesperado no sistema. "
@@ -47,8 +46,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 	private MessageSource messageSource;
 
 	@ExceptionHandler(EntityNotFoundException.class)
-	public ResponseEntity<Object> handleStateNotFoundException(EntityNotFoundException ex, WebRequest request)
-	{
+	public ResponseEntity<Object> handleStateNotFoundException(EntityNotFoundException ex, WebRequest request) {
 		HttpStatus status = HttpStatus.NOT_FOUND;
 
 		ApiError error = createApiErrorBuilder(status, ApiErrorType.RESOURCE_NOT_FOUND, ex.getMessage())
@@ -58,8 +56,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 	}
 
 	@ExceptionHandler(EntityInUseException.class)
-	public ResponseEntity<Object> handleEntityInUseException(EntityInUseException ex, WebRequest request)
-	{
+	public ResponseEntity<Object> handleEntityInUseException(EntityInUseException ex, WebRequest request) {
 		HttpStatus status = HttpStatus.CONFLICT;
 
 		ApiError error = createApiErrorBuilder(status, ApiErrorType.ENTITY_IN_USE, ex.getMessage())
@@ -69,8 +66,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 	}
 
 	@ExceptionHandler(BusinessException.class)
-	public ResponseEntity<Object> handleBusinessException(BusinessException ex, WebRequest request)
-	{
+	public ResponseEntity<Object> handleBusinessException(BusinessException ex, WebRequest request) {
 		HttpStatus status = HttpStatus.BAD_REQUEST;
 
 		ApiError error = createApiErrorBuilder(status, ApiErrorType.BUSINESS_EXCEPTION, ex.getMessage())
@@ -80,8 +76,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 	}
 
 	@ExceptionHandler(Exception.class)
-	public ResponseEntity<Object> handlerUncaught(Exception ex, WebRequest request)
-	{
+	public ResponseEntity<Object> handlerUncaught(Exception ex, WebRequest request) {
 		HttpStatus status = HttpStatus.INTERNAL_SERVER_ERROR;
 
 		log.error(ex.getMessage(), ex);
@@ -93,8 +88,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 	}
 
 	@ExceptionHandler(ValidationException.class)
-	public ResponseEntity<Object> handleValidationException(ValidationException ex, WebRequest request)
-	{
+	public ResponseEntity<Object> handleValidationException(ValidationException ex, WebRequest request) {
 		return handleValidationInternal(ex, ex.getBindingResult(), new HttpHeaders(), HttpStatus.BAD_REQUEST, request);
 	}
 	/*
@@ -113,14 +107,12 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 
 	@Override
 	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request)
-	{
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		return handleValidationInternal(ex, ex.getBindingResult(), new HttpHeaders(), status, request);
 	}
 
 	private ResponseEntity<Object> handleValidationInternal(Exception ex, BindingResult bindingResult,
-			HttpHeaders headers, HttpStatus status, WebRequest request)
-	{
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		String detail = "Um ou mais campos estão inválidos. Faça o preenchimento correto e tente novamente.";
 
 		List<ApiError.Object> objects = bindingResult.getAllErrors().stream().map(objectError -> {
@@ -128,8 +120,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 
 			String name = objectError.getObjectName();
 
-			if (objectError instanceof FieldError)
-			{
+			if (objectError instanceof FieldError) {
 				name = ((FieldError) objectError).getField();
 			}
 
@@ -144,15 +135,13 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 
 	@Override
 	protected ResponseEntity<Object> handleHttpMediaTypeNotAcceptable(HttpMediaTypeNotAcceptableException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request)
-	{
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		return ResponseEntity.status(status).headers(headers).build();
 	}
 
 	@Override
 	protected ResponseEntity<Object> handleNoHandlerFoundException(NoHandlerFoundException ex, HttpHeaders headers,
-			HttpStatus status, WebRequest request)
-	{
+			HttpStatus status, WebRequest request) {
 		String detail = String.format("O recurso '%s', que você tentou acessar, é inexistente.", ex.getRequestURL());
 
 		ApiError error = createApiErrorBuilder(status, ApiErrorType.RESOURCE_NOT_FOUND, detail)
@@ -163,10 +152,8 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 
 	@Override
 	protected ResponseEntity<Object> handleTypeMismatch(TypeMismatchException ex, HttpHeaders headers,
-			HttpStatus status, WebRequest request)
-	{
-		if (ex instanceof MethodArgumentTypeMismatchException)
-		{
+			HttpStatus status, WebRequest request) {
+		if (ex instanceof MethodArgumentTypeMismatchException) {
 			return handleMethodArgumentTypeMismatchException((MethodArgumentTypeMismatchException) ex, headers, status,
 					request);
 		}
@@ -176,39 +163,33 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request)
-	{
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		Throwable rootCause = ExceptionUtils.getRootCause(ex);
 
-		if (rootCause instanceof InvalidFormatException)
-		{
+		if (rootCause instanceof InvalidFormatException) {
 			return handleInvalidFormatException((InvalidFormatException) rootCause, headers, status, request);
-		} else if (rootCause instanceof PropertyBindingException)
-		{
+		} else if (rootCause instanceof PropertyBindingException) {
 			return handlePropertyBindingException((PropertyBindingException) rootCause, headers, status, request);
-		} else if (rootCause instanceof MethodArgumentTypeMismatchException)
-		{
+		} else if (rootCause instanceof MethodArgumentTypeMismatchException) {
 			return handleMethodArgumentTypeMismatchException((MethodArgumentTypeMismatchException) rootCause, headers,
 					status, request);
 		}
 
 		ApiError error = createApiErrorBuilder(status, ApiErrorType.REQUEST_BODY_ERROR,
 				"O corpo da requisição é inválido. Verifique erro de sintaxe.").userMessage(GENERIC_ERROR_MESSAGE)
-						.build();
+				.build();
 
 		return handleExceptionInternal(ex, error, new HttpHeaders(), status, request);
 	}
 
 	@Override
 	protected ResponseEntity<Object> handleBindException(BindException ex, HttpHeaders headers, HttpStatus status,
-			WebRequest request)
-	{
+			WebRequest request) {
 		return handleValidationInternal(ex, ex.getBindingResult(), headers, status, request);
 	}
 
 	private ResponseEntity<Object> handleInvalidFormatException(InvalidFormatException ex, HttpHeaders headers,
-			HttpStatus status, WebRequest request)
-	{
+			HttpStatus status, WebRequest request) {
 		String path = joinPath(ex.getPath());
 		String detail = String.format(
 				"A propriedade '%s' recebeu o valor '%s', que é um valor inválido."
@@ -222,8 +203,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 	}
 
 	private ResponseEntity<Object> handlePropertyBindingException(PropertyBindingException ex, HttpHeaders headers,
-			HttpStatus status, WebRequest request)
-	{
+			HttpStatus status, WebRequest request) {
 		String path = joinPath(ex.getPath());
 		String detail = String.format("A propriedade '%s' não existe.", path);
 
@@ -234,8 +214,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 	}
 
 	private ResponseEntity<Object> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request)
-	{
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
 		String detail = String.format(
 				"O parâmetro de URL '%s' recebeu o valor '%s', que é um valor inválido."
 						+ " Corrija e informe um valor compatível com o tipo de dado %s",
@@ -249,29 +228,24 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler
 
 	@Override
 	protected ResponseEntity<Object> handleExceptionInternal(Exception ex, Object body, HttpHeaders headers,
-			HttpStatus status, WebRequest request)
-	{
-		if (body == null)
-		{
+			HttpStatus status, WebRequest request) {
+		if (body == null) {
 			body = ApiError.Builder.newbuilder().status(status.value()).title(status.getReasonPhrase())
 					.userMessage(GENERIC_ERROR_MESSAGE).timestamp(OffsetDateTime.now()).build();
-		} else if (body instanceof String)
-		{
-			body = ApiError.Builder.newbuilder().status(status.value()).title((String) body).userMessage(GENERIC_ERROR_MESSAGE)
-					.timestamp(OffsetDateTime.now()).build();
+		} else if (body instanceof String) {
+			body = ApiError.Builder.newbuilder().status(status.value()).title((String) body)
+					.userMessage(GENERIC_ERROR_MESSAGE).timestamp(OffsetDateTime.now()).build();
 		}
 
 		return super.handleExceptionInternal(ex, body, headers, status, request);
 	}
 
-	private ApiError.Builder createApiErrorBuilder(HttpStatus status, ApiErrorType errorType, String detail)
-	{
+	private ApiError.Builder createApiErrorBuilder(HttpStatus status, ApiErrorType errorType, String detail) {
 		return ApiError.Builder.newbuilder().status(status.value()).type(errorType.getUri()).title(errorType.getTitle())
 				.detail(detail).timestamp(OffsetDateTime.now());
 	}
 
-	private String joinPath(List<Reference> references)
-	{
+	private String joinPath(List<Reference> references) {
 		return references.stream().map(ref -> ref.getFieldName()).collect(Collectors.joining("."));
 	}
 

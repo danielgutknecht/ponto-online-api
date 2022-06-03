@@ -16,8 +16,8 @@ import com.gutk.pontoonline.api.enums.PerfilEnum;
 @Table(name = "funcionario")
 public class Funcionario extends AbstractEntity {
 
-	private static final long serialVersionUID = 1L;	
-	
+	private static final long serialVersionUID = 1L;
+
 	private String nome;
 	private String email;
 	private String senha;
@@ -25,8 +25,12 @@ public class Funcionario extends AbstractEntity {
 	private Float valorHora;
 	private Float qtdHorasTrabalhoDia;
 	private Float qtdHorasAlmoco;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "perfil", nullable = true)
 	private PerfilEnum perfil;
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Empresa empresa;
+	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	private List<Lancamento> lancamentos;
 
 	public String getNome() {
@@ -36,9 +40,7 @@ public class Funcionario extends AbstractEntity {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	
-	@Column(name = "email", nullable = true)
+
 	public String getEmail() {
 		return email;
 	}
@@ -47,7 +49,6 @@ public class Funcionario extends AbstractEntity {
 		this.email = email;
 	}
 
-	@Column(name = "cpf", nullable = true)
 	public String getCpf() {
 		return cpf;
 	}
@@ -56,7 +57,6 @@ public class Funcionario extends AbstractEntity {
 		this.cpf = cpf;
 	}
 
-	@Column(name = "valor_hora", nullable = true)
 	public Float getValorHora() {
 		return valorHora;
 	}
@@ -65,16 +65,14 @@ public class Funcionario extends AbstractEntity {
 		this.valorHora = valorHora;
 	}
 
-	@Column(name = "qtd_horas_trabalho_dia", nullable = true)
 	public Float getQtdHorasTrabalhoDia() {
 		return qtdHorasTrabalhoDia;
 	}
-	
+
 	public void setQtdHorasTrabalhoDia(Float qtdHorasTrabalhoDia) {
 		this.qtdHorasTrabalhoDia = qtdHorasTrabalhoDia;
 	}
 
-	@Column(name = "qtd_horas_almoco", nullable = true)
 	public Float getQtdHorasAlmoco() {
 		return qtdHorasAlmoco;
 	}
@@ -83,8 +81,6 @@ public class Funcionario extends AbstractEntity {
 		this.qtdHorasAlmoco = qtdHorasAlmoco;
 	}
 
-	@Enumerated(EnumType.STRING)
-	@Column(name = "perfil", nullable = true)
 	public PerfilEnum getPerfil() {
 		return perfil;
 	}
@@ -93,7 +89,6 @@ public class Funcionario extends AbstractEntity {
 		this.perfil = perfil;
 	}
 
-	@Column(name = "senha", nullable = true)
 	public String getSenha() {
 		return senha;
 	}
@@ -102,7 +97,6 @@ public class Funcionario extends AbstractEntity {
 		this.senha = senha;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
 	public Empresa getEmpresa() {
 		return empresa;
 	}
@@ -111,7 +105,6 @@ public class Funcionario extends AbstractEntity {
 		this.empresa = empresa;
 	}
 
-	@OneToMany(mappedBy = "funcionario", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	public List<Lancamento> getLancamentos() {
 		return lancamentos;
 	}
@@ -122,9 +115,9 @@ public class Funcionario extends AbstractEntity {
 
 	@Override
 	public String toString() {
-		return "Funcionario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
-				+ ", valorHora=" + valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco="
-				+ qtdHorasAlmoco + ", perfil=" + perfil + ", empresa=" + empresa + ", lancamentos=" + lancamentos + "]";
+		return "Funcionario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf + ", valorHora="
+				+ valorHora + ", qtdHorasTrabalhoDia=" + qtdHorasTrabalhoDia + ", qtdHorasAlmoco=" + qtdHorasAlmoco
+				+ ", perfil=" + perfil + ", empresa=" + empresa + ", lancamentos=" + lancamentos + "]";
 	}
 
 }

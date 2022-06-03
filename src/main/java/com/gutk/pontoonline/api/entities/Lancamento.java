@@ -1,6 +1,5 @@
 package com.gutk.pontoonline.api.entities;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -18,11 +17,12 @@ public class Lancamento extends AbstractEntity {
 
 	public String descriacao;
 	private String localizacao;
+	@Enumerated(EnumType.STRING)
+	@Column(name = "tipo", nullable = false)
 	private TipoEnum tipo;
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Funcionario funcionario;
 
-
-	@Column(name = "descricao", nullable = true)
 	public String getDescriacao() {
 		return descriacao;
 	}
@@ -31,7 +31,6 @@ public class Lancamento extends AbstractEntity {
 		this.descriacao = descriacao;
 	}
 
-	@Column(name = "localizacao", nullable = true)
 	public String getLocalizacao() {
 		return localizacao;
 	}
@@ -39,9 +38,7 @@ public class Lancamento extends AbstractEntity {
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
 	}
-	
-	@Enumerated(EnumType.STRING)
-	@Column(name = "tipo", nullable = false)
+
 	public TipoEnum getTipo() {
 		return tipo;
 	}
@@ -50,7 +47,6 @@ public class Lancamento extends AbstractEntity {
 		this.tipo = tipo;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
 	public Funcionario getFuncionario() {
 		return funcionario;
 	}
@@ -60,10 +56,9 @@ public class Lancamento extends AbstractEntity {
 	}
 
 	@Override
-	public String toString()
-	{
-		return "Lancamento [descriacao=" + descriacao + ", localizacao=" + localizacao + ", tipo="
-				+ tipo + ", funcionario=" + funcionario + "]";
-	}	
-	
+	public String toString() {
+		return "Lancamento [descriacao=" + descriacao + ", localizacao=" + localizacao + ", tipo=" + tipo
+				+ ", funcionario=" + funcionario + "]";
+	}
+
 }
